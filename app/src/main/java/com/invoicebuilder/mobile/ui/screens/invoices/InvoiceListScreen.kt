@@ -41,23 +41,35 @@ fun InvoiceListScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
+    // List of Invoices filtered by status and search query
+    val filteredList = uiState.invoices.filter { invoice ->
+        val matchesStatus = uiState.selectedStatus == null || invoice.status == uiState.selectedStatus
+        val matchesQuery = uiState.searchQuery.isBlank() ||
+            invoice.fullInvoiceNumber.contains(uiState.searchQuery, ignoreCase = true) ||
+            invoice.issuedAt.contains(uiState.searchQuery, ignoreCase = true) ||
+            (invoice.dueDate?.contains(uiState.searchQuery, ignoreCase = true) == true)
+        matchesStatus && matchesQuery
+    }
+
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         floatingActionButton = {
-            ExtendedFloatingActionButton(
-                onClick = onCreateNewInvoice,
-                icon = { Icon(Icons.Default.Add, contentDescription = null) },
-                text = {
-                    Text(
-                        if (uiState.selectedType == InvoiceType.invoice) "New Invoice" else "New Quotation",
-                        style = MaterialTheme.typography.labelLarge
-                    )
-                },
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary,
-                shape = RoundedCornerShape(18.dp),
-                elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 4.dp)
-            )
+            if (filteredList.isNotEmpty()) {
+                ExtendedFloatingActionButton(
+                    onClick = onCreateNewInvoice,
+                    icon = { Icon(Icons.Default.Add, contentDescription = null) },
+                    text = {
+                        Text(
+                            if (uiState.selectedType == InvoiceType.invoice) "New Invoice" else "New Quotation",
+                            style = MaterialTheme.typography.labelLarge
+                        )
+                    },
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
+                    shape = RoundedCornerShape(18.dp),
+                    elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 4.dp)
+                )
+            }
         }
     ) { padding ->
         Column(
@@ -169,15 +181,6 @@ fun InvoiceListScreen(
             }
 
             // List of Invoices filtered by status and search query
-            val filteredList = uiState.invoices.filter { invoice ->
-                val matchesStatus = uiState.selectedStatus == null || invoice.status == uiState.selectedStatus
-                val matchesQuery = uiState.searchQuery.isBlank() ||
-                    invoice.fullInvoiceNumber.contains(uiState.searchQuery, ignoreCase = true) ||
-                    invoice.issuedAt.contains(uiState.searchQuery, ignoreCase = true) ||
-                    (invoice.dueDate?.contains(uiState.searchQuery, ignoreCase = true) == true)
-                matchesStatus && matchesQuery
-            }
-
             if (uiState.isLoading) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(strokeWidth = 3.dp)
