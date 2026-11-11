@@ -12,6 +12,7 @@ interface ClientRepository {
     suspend fun getClientById(id: Long): Client?
     suspend fun saveClient(client: Client): Long
     suspend fun archiveClient(id: Long, isArchived: Boolean)
+    suspend fun dedupeClientsByName()
 }
 
 class ClientRepositoryImpl(private val clientDao: ClientDao) : ClientRepository {
@@ -27,16 +28,39 @@ class ClientRepositoryImpl(private val clientDao: ClientDao) : ClientRepository 
 
     override suspend fun saveClient(client: Client): Long {
         val entity = client.toEntity()
+        val now = Instant.now().toString()
         return if (client.id == 0L) {
-            clientDao.insert(entity.copy(createdAt = Instant.now().toString(), updatedAt = Instant.now().toString()))
+            val existing = clientDao.getActiveClientByName(client.name.trim())
+            if (existing != null) {
+                clientDao.update(
+                    entity.copy(
+                        id = existing.id,
+                        createdAt = existing.createdAt,
+                        updatedAt = now
+                    )
+                )
+                existing.id
+            } else {
+                clientDao.insert(entity.copy(createdAt = now, updatedAt = now))
+            }
         } else {
-            clientDao.update(entity.copy(updatedAt = Instant.now().toString()))
+            clientDao.update(entity.copy(updatedAt = now))
             client.id
         }
     }
 
     override suspend fun archiveClient(id: Long, isArchived: Boolean) {
         clientDao.setArchived(id, isArchived)
+    }
+
+    override suspend fun dedupeClientsByName() {
+        val duplicates = clientDao.getActiveClients()
+            .groupBy { it.name.trim().lowercase() }
+            .values
+            .filter { it.size > 1 }
+            .map { group -> group.drop(1).map { it.id } }
+            .flatten()
+        duplicates.forEach { id -> clientDao.setArchived(id, true) }
     }
 
     private fun ClientEntity.toModel() = Client(
@@ -170,6 +194,7 @@ interface ItemRepository {
     suspend fun getItemById(id: Long): Item?
     suspend fun saveItem(item: Item): Long
     suspend fun archiveItem(id: Long, isArchived: Boolean)
+    suspend fun dedupeItemsByName()
 }
 
 class ItemRepositoryImpl(private val itemDao: ItemDao) : ItemRepository {
@@ -185,16 +210,39 @@ class ItemRepositoryImpl(private val itemDao: ItemDao) : ItemRepository {
 
     override suspend fun saveItem(item: Item): Long {
         val entity = item.toEntity()
+        val now = Instant.now().toString()
         return if (item.id == 0L) {
-            itemDao.insert(entity.copy(createdAt = Instant.now().toString(), updatedAt = Instant.now().toString()))
+            val existing = itemDao.getActiveItemByName(item.name.trim())
+            if (existing != null) {
+                itemDao.update(
+                    entity.copy(
+                        id = existing.id,
+                        createdAt = existing.createdAt,
+                        updatedAt = now
+                    )
+                )
+                existing.id
+            } else {
+                itemDao.insert(entity.copy(createdAt = now, updatedAt = now))
+            }
         } else {
-            itemDao.update(entity.copy(updatedAt = Instant.now().toString()))
+            itemDao.update(entity.copy(updatedAt = now))
             item.id
         }
     }
 
     override suspend fun archiveItem(id: Long, isArchived: Boolean) {
         itemDao.setArchived(id, isArchived)
+    }
+
+    override suspend fun dedupeItemsByName() {
+        val duplicates = itemDao.getActiveItems()
+            .groupBy { it.name.trim().lowercase() }
+            .values
+            .filter { it.size > 1 }
+            .map { group -> group.drop(1).map { it.id } }
+            .flatten()
+        duplicates.forEach { id -> itemDao.setArchived(id, true) }
     }
 
     private fun ItemEntity.toModel() = Item(

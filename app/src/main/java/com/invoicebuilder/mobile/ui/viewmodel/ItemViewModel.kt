@@ -38,6 +38,12 @@ class ItemViewModel @Inject constructor(
         ItemUiState(items = filtered, searchQuery = query, isLoading = false)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), ItemUiState(isLoading = true))
 
+    init {
+        viewModelScope.launch {
+            itemRepository.dedupeItemsByName()
+        }
+    }
+
     fun setSearchQuery(query: String) {
         _searchQuery.value = query
     }

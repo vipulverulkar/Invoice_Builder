@@ -16,6 +16,12 @@ interface ClientDao {
     @Query("SELECT * FROM clients WHERE id = :id")
     suspend fun getClientById(id: Long): ClientEntity?
 
+    @Query("SELECT * FROM clients WHERE name = :name COLLATE NOCASE AND isArchived = 0 LIMIT 1")
+    suspend fun getActiveClientByName(name: String): ClientEntity?
+
+    @Query("SELECT * FROM clients WHERE isArchived = 0")
+    suspend fun getActiveClients(): List<ClientEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(client: ClientEntity): Long
 
@@ -51,6 +57,12 @@ interface ItemDao {
 
     @Query("SELECT * FROM items WHERE id = :id")
     suspend fun getItemById(id: Long): ItemEntity?
+
+    @Query("SELECT * FROM items WHERE name = :name COLLATE NOCASE AND isArchived = 0 LIMIT 1")
+    suspend fun getActiveItemByName(name: String): ItemEntity?
+
+    @Query("SELECT * FROM items WHERE isArchived = 0")
+    suspend fun getActiveItems(): List<ItemEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: ItemEntity): Long

@@ -372,6 +372,7 @@ fun ModernClientFormDialog(
     var vatCode by remember { mutableStateOf(initialClient?.vatCode ?: "") }
     var peppolEndpointId by remember { mutableStateOf(initialClient?.peppolEndpointId ?: "") }
     var buyerReference by remember { mutableStateOf(initialClient?.buyerReference ?: "") }
+    var isSubmitting by remember { mutableStateOf(false) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -493,9 +494,10 @@ fun ModernClientFormDialog(
         confirmButton = {
             Button(
                 onClick = {
-                    if (name.isNotBlank()) {
+                    if (name.isNotBlank() && !isSubmitting) {
+                        isSubmitting = true
                         val client = (initialClient ?: Client(name = name, shortName = shortName)).copy(
-                            name = name,
+                            name = name.trim(),
                             shortName = shortName.ifEmpty { name.take(2).uppercase() },
                             email = email.ifBlank { null },
                             phone = phone.ifBlank { null },
@@ -507,10 +509,18 @@ fun ModernClientFormDialog(
                         onSave(client)
                     }
                 },
-                enabled = name.isNotBlank(),
+                enabled = name.isNotBlank() && !isSubmitting,
                 shape = RoundedCornerShape(12.dp)
             ) {
-                Text("Save Client")
+                if (isSubmitting) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(16.dp),
+                        strokeWidth = 2.dp,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                } else {
+                    Text("Save Client")
+                }
             }
         },
         dismissButton = {

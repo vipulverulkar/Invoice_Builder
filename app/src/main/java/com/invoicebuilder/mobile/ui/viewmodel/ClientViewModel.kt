@@ -41,6 +41,12 @@ class ClientViewModel @Inject constructor(
         ClientUiState(clients = filtered, searchQuery = query, isLoading = false)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), ClientUiState(isLoading = true))
 
+    init {
+        viewModelScope.launch {
+            clientRepository.dedupeClientsByName()
+        }
+    }
+
     fun setSearchQuery(query: String) {
         _searchQuery.value = query
     }

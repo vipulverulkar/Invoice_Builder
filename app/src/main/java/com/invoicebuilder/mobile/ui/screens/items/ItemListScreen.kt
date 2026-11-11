@@ -323,6 +323,7 @@ fun ModernItemFormDialog(
     onSave: (Item) -> Unit
 ) {
     var name by remember { mutableStateOf(initialItem?.name ?: "") }
+    var isSubmitting by remember { mutableStateOf(false) }
     var priceInput by remember {
         val initialCents = initialItem?.amountCents?.toDoubleOrNull() ?: 0.0
         mutableStateOf(if (initialCents > 0) String.format(Locale.US, "%.2f", initialCents / 100.0) else "")
@@ -396,20 +397,29 @@ fun ModernItemFormDialog(
         confirmButton = {
             Button(
                 onClick = {
-                    if (name.isNotBlank()) {
+                    if (name.isNotBlank() && !isSubmitting) {
+                        isSubmitting = true
                         val cents = ((priceInput.toDoubleOrNull() ?: 0.0) * 100).toLong().toString()
                         val item = (initialItem ?: Item(name = name)).copy(
-                            name = name,
+                            name = name.trim(),
                             amountCents = cents,
                             description = description.ifBlank { null }
                         )
                         onSave(item)
                     }
                 },
-                enabled = name.isNotBlank(),
+                enabled = name.isNotBlank() && !isSubmitting,
                 shape = RoundedCornerShape(12.dp)
             ) {
-                Text("Save Item")
+                if (isSubmitting) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(16.dp),
+                        strokeWidth = 2.dp,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                } else {
+                    Text("Save Item")
+                }
             }
         },
         dismissButton = {
