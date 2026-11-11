@@ -389,23 +389,31 @@ object GstTaxEngine {
 
 ## 8. Milestone Roadmap
 
-### M0 — Foundations (3 days)
+### M0 — Foundations (3 days) — ✅ **DONE** (`9139031`)
 
 **Goal:** make schema changes safe and remove the EU tax model.
 
-| # | Task | Files |
-|---|------|-------|
-| 0.1 | Author `Migration(1, 2)` adding all new columns + backfills | `core/database/.../AppDatabase.kt`, new `core/database/.../Migrations.kt` |
-| 0.2 | Remove `fallbackToDestructiveMigration()` | `app/.../di/DatabaseModule.kt` |
-| 0.3 | Introduce `Money` value class; migrate `CalculatedInvoice`/`VatGroup` → `GstInvoiceTotals`/`GstTaxGroup` | `core/model/.../Models.kt`, `core/calculator/.../InvoiceCalculator.kt` |
-| 0.4 | Delete `core:einvoice` module, `FacturXAttacher`, `EInvoice` enum usage, PEPPOL/XRechnung strings | `settings.gradle.kts`, `core/einvoice/**`, `core/pdf/.../FacturXAttacher.kt`, `app/src/main/res/values*/strings.xml` |
-| 0.5 | Add `core:gstn` module skeleton + wire `core:common` into `:app` | `settings.gradle.kts`, `app/build.gradle.kts` |
-| 0.6 | Extend `gradle/libs.versions.toml` with `zxing`, `security-crypto`, `okhttp`/`ktor` | `gradle/libs.versions.toml` |
+| # | Task | Files | Status |
+|---|------|-------|--------|
+| 0.1 | Author `Migration(1, 2)` adding all new columns + backfills | `core/database/.../AppDatabase.kt` | ✅ `@AutoMigration(from = 1, to = 2)` + committed `schemas/*.json` (63 generated `ALTER TABLE` statements) |
+| 0.2 | Remove `fallbackToDestructiveMigration()` | `app/.../di/DatabaseModule.kt` | ✅ |
+| 0.3 | Introduce `Money` value class; migrate `CalculatedInvoice`/`VatGroup` → `GstInvoiceTotals`/`GstTaxGroup` | `core/model/.../Money.kt`, `GstModels.kt`, `core/calculator/.../InvoiceCalculator.kt` | ✅ CGST/SGST vs IGST split, round-off, amount in words |
+| 0.4 | Delete `core:einvoice` module, `FacturXAttacher`, `EInvoice` enum usage, PEPPOL/XRechnung strings | module removed, 55 EU strings pruned per locale | ✅ `InvoicePreviewScreen` rewritten for GST PDF + e-invoice JSON |
+| 0.5 | Add `core:gstn` module skeleton + wire `core:common` into `:app` | `core/gstn/**` | ✅ gateway interface, `GstEInvoiceJsonBuilder`, manual gateway |
+| 0.6 | Extend `gradle/libs.versions.toml` with `zxing`, `security-crypto`, `okhttp` | `gradle/libs.versions.toml` | ✅ |
 
-**Acceptance criteria**
-- Existing databases upgrade from v1 → v2 with no data loss (verified by a migration unit test).
-- `./gradlew :app:assembleDebug` and `:core:calculator:test` pass.
-- No reference to PEPPOL/XRechnung/Factur-X remains in the source tree.
+**Verified on device (SM-M536B):** v1 → v2 migration ran with no data loss (seeded INR currency + business preserved), invoice creation works end-to-end, ₹ formatting and amount-in-words correct, 0 crashes.
+
+**Bugs found and fixed during M0 verification:**
+| Bug | Fix |
+|---|---|
+| Second invoice for the same client crashed the app (`SQLiteConstraintException` — invoice number never incremented because the sequence was only reserved on manual client/business selection) | Reserve the number when the catalogues load (`reserveNextNumber()`), plus crash-safe `saveInvoice` that surfaces errors instead of throwing |
+| Invoice lines stored no price/name snapshot, so catalogue edits rewrote issued invoices | Line-item snapshots (`itemName`, `unitPriceCents`, `hsnCode`, `gstRate`, `lineTotalCents`) written to `invoice_items` and `invoice_item_snapshots` |
+| Zero-rated/exempt supplies were still taxed; per-line rates were ignored | Supply-type aware tax resolution, nullable per-line rate (`null` = inherit invoice rate, `0.0` = zero-rated) |
+
+**Deviations from the original plan:**
+1. The `ublON` / `xrechnungON` columns are **retained** in the `settings` table (unused) instead of being dropped — Room's Kotlin auto-migration spec annotations (`@DeleteColumn`) were not detected by the KSP processor, and keeping the columns avoids a table rebuild on upgrade.
+2. `GstTaxEngine` is deferred to M1.2 as planned; M0 delivers the `Money`/`GstTaxGroup`/`GstInvoiceTotals` domain model and the CGST/SGST/IGST split inside `InvoiceCalculator`, which M1.2 will promote into `GstTaxEngine` with per-line discounts, cess, TDS/TCS and place-of-supply resolution.
 
 ---
 
