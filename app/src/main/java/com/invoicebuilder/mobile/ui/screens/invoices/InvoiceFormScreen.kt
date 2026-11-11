@@ -17,7 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.invoicebuilder.core.model.CurrencyFormat
+import com.invoicebuilder.core.model.Money
 import com.invoicebuilder.core.model.DiscountType
 import com.invoicebuilder.core.model.TaxType
 import com.invoicebuilder.mobile.ui.viewmodel.InvoiceFormViewModel
@@ -113,6 +113,35 @@ fun InvoiceFormScreen(
                 }
             }
 
+            // Save error (e.g. a duplicate invoice number)
+            uiState.errorMessage?.let { message ->
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    color = MaterialTheme.colorScheme.errorContainer
+                ) {
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Icon(
+                            Icons.Outlined.ErrorOutline,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onErrorContainer,
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Text(
+                            text = message,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                    }
+                }
+            }
+
             // Bottom Sticky Totals Bar
             uiState.calculated?.let { calc ->
                 Surface(
@@ -135,7 +164,7 @@ fun InvoiceFormScreen(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             Text(
-                                text = CurrencyFormat.formatAmount(calc.payableTotal / 100.0),
+                                text = calc.payableTotal.format(),
                                 style = MaterialTheme.typography.headlineMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.primary
@@ -328,7 +357,7 @@ fun LineItemsStep(viewModel: InvoiceFormViewModel) {
                                 )
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
-                                    "Qty: ${item.quantity} × ${CurrencyFormat.SYMBOL}${CurrencyFormat.formatPlain(item.unitPriceCents / 100.0)}",
+                                    "Qty: ${item.quantity} × ${item.unitPrice.format()}",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -371,7 +400,7 @@ fun LineItemsStep(viewModel: InvoiceFormViewModel) {
                                     },
                                     supportingContent = {
                                         Text(
-                                            "${CurrencyFormat.SYMBOL}${CurrencyFormat.formatPlain((catalogItem.amountCents.toDoubleOrNull() ?: 0.0) / 100.0)}",
+                                            Money.ofCents(catalogItem.amountCents).format(),
                                             color = MaterialTheme.colorScheme.primary,
                                             fontWeight = FontWeight.Bold
                                         )

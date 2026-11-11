@@ -57,10 +57,27 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun toggleEInvoice(enabled: Boolean) {
+    /** Enables GST registration and e-invoice (IRN) support. */
+    fun toggleGstRegistration(enabled: Boolean) {
         viewModelScope.launch {
             val current = settings.value
-            settingsDao.insertOrUpdate(current.copy(ublON = enabled, xrechnungON = enabled))
+            settingsDao.insertOrUpdate(current.copy(gstRegistrationOn = enabled))
+        }
+    }
+
+    /** Financial year used for GST invoice numbering, e.g. "2025-26". */
+    fun updateFinancialYear(financialYear: String) {
+        viewModelScope.launch {
+            val current = settings.value
+            settingsDao.insertOrUpdate(current.copy(financialYear = financialYear.ifBlank { null }))
+        }
+    }
+
+    /** Default place of supply (GST state code) for new invoices. */
+    fun updateDefaultStateCode(stateCode: String) {
+        viewModelScope.launch {
+            val current = settings.value
+            settingsDao.insertOrUpdate(current.copy(defaultStateCode = stateCode.ifBlank { null }))
         }
     }
 }

@@ -64,7 +64,26 @@ class InvoiceRepositoryImpl(private val invoiceDao: InvoiceDao) : InvoiceReposit
         val itemEntities = param.items.map {
             it.toEntity().copy(parentInvoiceId = invoiceId, createdAt = now, updatedAt = now)
         }
-        invoiceDao.insertItems(itemEntities)
+        val invoiceItemIds = invoiceDao.insertItems(itemEntities)
+
+        // Immutable line item snapshots (name, price, HSN and GST rate at issue time)
+        invoiceDao.insertItemSnapshots(
+            invoiceItemIds.mapIndexed { index, id ->
+                val line = param.items[index]
+                InvoiceItemSnapshotEntity(
+                    parentInvoiceItemId = id,
+                    itemName = line.itemName.orEmpty(),
+                    unitPriceCents = line.unitPriceCents,
+                    unitName = line.unitCode?.name,
+                    hsnCode = line.hsnCode,
+                    gstRate = line.gstRate,
+                    discountType = line.discountType?.name,
+                    discountAmountCents = line.discountAmountCents,
+                    lineTotalCents = line.lineTotalCents,
+                    createdAt = now
+                )
+            }
+        )
 
         // Insert immutable historic snapshots
         invoiceDao.insertBusinessSnapshot(
@@ -84,6 +103,9 @@ class InvoiceRepositoryImpl(private val invoiceDao: InvoiceDao) : InvoiceReposit
                 businessPeppolEndpointId = param.business.peppolEndpointId,
                 businessCountryCode = param.business.countryCode,
                 businessPeppolEndpointSchemeId = param.business.peppolEndpointSchemeId,
+                businessGstin = param.business.gstin,
+                businessPan = param.business.pan,
+                businessStateCode = param.business.stateCode,
                 createdAt = now,
                 updatedAt = now
             )
@@ -103,6 +125,9 @@ class InvoiceRepositoryImpl(private val invoiceDao: InvoiceDao) : InvoiceReposit
                 clientCountryCode = param.client.countryCode,
                 clientPeppolEndpointSchemeId = param.client.peppolEndpointSchemeId,
                 clientBuyerReference = param.client.buyerReference,
+                clientGstin = param.client.gstin,
+                clientTradeName = param.client.tradeName,
+                clientStateCode = param.client.stateCode,
                 createdAt = now,
                 updatedAt = now
             )
@@ -134,6 +159,8 @@ class InvoiceRepositoryImpl(private val invoiceDao: InvoiceDao) : InvoiceReposit
                     upiCode = bank.upiCode,
                     qrCode = bank.qrCode,
                     accountHolder = bank.accountHolder,
+                    ifscCode = bank.ifscCode,
+                    upiId = bank.upiId,
                     createdAt = now,
                     updatedAt = now
                 )
@@ -220,7 +247,22 @@ class InvoiceRepositoryImpl(private val invoiceDao: InvoiceDao) : InvoiceReposit
         taxType = taxType,
         signatureData = signatureData,
         styleProfilesId = styleProfilesId,
-        language = language
+        language = language,
+        invoiceKind = invoiceKind?.let { runCatching { InvoiceKind.valueOf(it) }.getOrNull() },
+        placeOfSupply = placeOfSupply,
+        reverseCharge = reverseCharge,
+        roundOffCents = roundOffCents,
+        amountInWords = amountInWords,
+        tdsSection = tdsSection,
+        tdsAmountCents = tdsAmountCents,
+        tcsSection = tcsSection,
+        tcsAmountCents = tcsAmountCents,
+        totalCents = totalCents,
+        irn = irn,
+        ackNumber = ackNumber,
+        ackDate = ackDate,
+        ewbNumber = ewbNumber,
+        ewbDate = ewbDate
     )
 
     private fun Invoice.toEntity() = InvoiceEntity(
@@ -258,7 +300,22 @@ class InvoiceRepositoryImpl(private val invoiceDao: InvoiceDao) : InvoiceReposit
         taxType = taxType,
         signatureData = signatureData,
         styleProfilesId = styleProfilesId,
-        language = language
+        language = language,
+        invoiceKind = invoiceKind?.name,
+        placeOfSupply = placeOfSupply,
+        reverseCharge = reverseCharge,
+        roundOffCents = roundOffCents,
+        amountInWords = amountInWords,
+        tdsSection = tdsSection,
+        tdsAmountCents = tdsAmountCents,
+        tcsSection = tcsSection,
+        tcsAmountCents = tcsAmountCents,
+        totalCents = totalCents,
+        irn = irn,
+        ackNumber = ackNumber,
+        ackDate = ackDate,
+        ewbNumber = ewbNumber,
+        ewbDate = ewbDate
     )
 
     private fun InvoiceItemEntity.toModel() = InvoiceLineItem(
@@ -268,7 +325,15 @@ class InvoiceRepositoryImpl(private val invoiceDao: InvoiceDao) : InvoiceReposit
         customField = customField,
         quantity = quantity,
         taxRate = taxRate,
-        taxType = taxType
+        taxType = taxType,
+        itemName = itemName,
+        unitPriceCents = unitPriceCents,
+        hsnCode = hsnCode,
+        gstRate = gstRate,
+        discountType = discountType?.let { runCatching { DiscountType.valueOf(it) }.getOrNull() },
+        discountAmountCents = discountAmountCents,
+        unitCode = unitCode?.let { runCatching { UnitOfMeasure.valueOf(it) }.getOrNull() },
+        lineTotalCents = lineTotalCents
     )
 
     private fun InvoiceLineItem.toEntity() = InvoiceItemEntity(
@@ -278,7 +343,15 @@ class InvoiceRepositoryImpl(private val invoiceDao: InvoiceDao) : InvoiceReposit
         customField = customField,
         quantity = quantity,
         taxRate = taxRate,
-        taxType = taxType
+        taxType = taxType,
+        itemName = itemName,
+        unitPriceCents = unitPriceCents,
+        hsnCode = hsnCode,
+        gstRate = gstRate,
+        discountType = discountType?.name,
+        discountAmountCents = discountAmountCents,
+        unitCode = unitCode?.name,
+        lineTotalCents = lineTotalCents
     )
 
     private fun InvoicePaymentEntity.toModel() = InvoicePayment(

@@ -20,9 +20,9 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:calculator"))
-    implementation(libs.pdfbox.android)
     implementation(libs.kotlinx.coroutines.core)
 
+    testImplementation(libs.pdfbox.android)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.truth)
 }

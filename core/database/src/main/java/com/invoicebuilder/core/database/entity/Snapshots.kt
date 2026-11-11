@@ -29,6 +29,10 @@ data class InvoiceBusinessSnapshotEntity(
     val businessPeppolEndpointId: String? = null,
     val businessCountryCode: String? = null,
     val businessPeppolEndpointSchemeId: String? = null,
+    // Indian GST identity captured at issue time
+    val businessGstin: String? = null,
+    val businessPan: String? = null,
+    val businessStateCode: String? = null,
     val createdAt: String? = null,
     val updatedAt: String? = null
 )
@@ -54,6 +58,10 @@ data class InvoiceClientSnapshotEntity(
     val clientCountryCode: String? = null,
     val clientPeppolEndpointSchemeId: String? = null,
     val clientBuyerReference: String? = null,
+    // Indian GST identity captured at issue time
+    val clientGstin: String? = null,
+    val clientTradeName: String? = null,
+    val clientStateCode: String? = null,
     val createdAt: String? = null,
     val updatedAt: String? = null
 )
@@ -96,6 +104,8 @@ data class InvoiceBankSnapshotEntity(
     val upiCode: String? = null,
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB) val qrCode: ByteArray? = null,
     val accountHolder: String? = null,
+    val ifscCode: String? = null,
+    val upiId: String? = null,
     val sortOrder: String? = null,
     val createdAt: String? = null,
     val updatedAt: String? = null
@@ -158,6 +168,12 @@ data class InvoiceItemSnapshotEntity(
     val itemName: String,
     val unitPriceCents: String = "0",
     val unitName: String? = null,
+    // Indian GST details captured at issue time
+    val hsnCode: String? = null,
+    @ColumnInfo(defaultValue = "0.0") val gstRate: Double = 0.0,
+    val discountType: String? = null,
+    @ColumnInfo(defaultValue = "'0'") val discountAmountCents: String = "0",
+    @ColumnInfo(defaultValue = "'0'") val lineTotalCents: String = "0",
     val createdAt: String? = null,
     val updatedAt: String? = null
 )

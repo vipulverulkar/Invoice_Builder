@@ -108,8 +108,3 @@ enum class SizeType {
     @SerialName("large") Large
 }
 
-@Serializable
-enum class EInvoice {
-    @SerialName("ubl21") UBL21,
-    @SerialName("xrechnung") XRechnung
-}

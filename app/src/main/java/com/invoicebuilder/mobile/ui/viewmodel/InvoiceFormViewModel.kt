@@ -22,10 +22,11 @@ data class InvoiceLineItemDraft(
     val id: String = java.util.UUID.randomUUID().toString(),
     val itemId: Long = 0,
     val name: String = "",
-    val unitPriceCents: Double = 0.0,
+    val unitPrice: Money = Money.ZERO,
     val quantity: Double = 1.0,
     val taxRate: Double = 0.0,
-    val taxType: InvoiceItemTaxType? = null
+    val taxType: InvoiceItemTaxType? = null,
+    val hsnCode: String? = null
 )
 
 data class InvoiceFormUiState(
@@ -63,10 +64,13 @@ data class InvoiceFormUiState(
     
     val customerNotes: String = "",
     val termsNotes: String = "",
+    val supplyType: GstSupplyType = GstSupplyType.IntraState,
+    val roundOffEnabled: Boolean = true,
     
-    val calculated: CalculatedInvoice? = null,
+    val calculated: GstInvoiceTotals? = null,
     val isSaving: Boolean = false,
-    val isSuccess: Boolean = false
+    val isSuccess: Boolean = false,
+    val errorMessage: String? = null
 )
 
 @HiltViewModel
@@ -108,20 +112,29 @@ class InvoiceFormViewModel @Inject constructor(
                     selectedBank = state.selectedBank ?: banks.firstOrNull()
                 )
             }.collect { newState ->
+                val previous = _uiState.value
                 _uiState.value = newState
                 recalculate()
+
+                // Reserve an invoice number as soon as business and client are known,
+                // otherwise the default "1" collides with an existing invoice.
+                val clientChanged = previous.selectedClient?.id != newState.selectedClient?.id
+                val businessChanged = previous.selectedBusiness?.id != newState.selectedBusiness?.id
+                if (clientChanged || businessChanged) {
+                    reserveNextNumber()
+                }
             }
         }
     }
 
     fun selectBusiness(business: Business) {
         _uiState.update { it.copy(selectedBusiness = business) }
-        updateSequenceNumber()
+        reserveNextNumber()
     }
 
     fun selectClient(client: Client) {
         _uiState.update { it.copy(selectedClient = client) }
-        updateSequenceNumber()
+        reserveNextNumber()
     }
 
     fun selectCurrency(currency: CurrencyEntity) {
@@ -134,17 +147,19 @@ class InvoiceFormViewModel @Inject constructor(
             InvoiceLineItemDraft(
                 itemId = item.id,
                 name = item.name,
-                unitPriceCents = item.amountCents.toDoubleOrNull() ?: 0.0,
-                quantity = 1.0
+                unitPrice = Money.ofCents(item.amountCents),
+                quantity = 1.0,
+                taxRate = item.gstRate,
+                hsnCode = item.hsnCode
             )
         )
         _uiState.update { it.copy(lineItems = currentLines) }
         recalculate()
     }
 
-    fun updateLineItem(id: String, quantity: Double, unitPriceCents: Double) {
+    fun updateLineItem(id: String, quantity: Double, unitPrice: Money) {
         val updated = _uiState.value.lineItems.map {
-            if (it.id == id) it.copy(quantity = quantity, unitPriceCents = unitPriceCents) else it
+            if (it.id == id) it.copy(quantity = quantity, unitPrice = unitPrice) else it
         }
         _uiState.update { it.copy(lineItems = updated) }
         recalculate()
@@ -170,30 +185,39 @@ class InvoiceFormViewModel @Inject constructor(
         val state = _uiState.value
         val itemsInput = state.lineItems.map {
             ItemCalculationInput(
-                unitPriceCents = it.unitPriceCents,
+                unitPrice = it.unitPrice,
                 quantity = it.quantity,
-                taxRate = it.taxRate,
-                taxType = it.taxType
+                // A line without its own GST rate inherits the invoice rate.
+                taxRate = it.taxRate.takeIf { rate -> rate > 0.0 },
+                taxType = it.taxType,
+                itemName = it.name,
+                hsnCode = it.hsnCode
             )
         }
 
         val calculated = InvoiceCalculator.calculateInvoiceTotals(
             items = itemsInput,
             discountType = state.discountType,
-            discountAmountCents = state.discountAmountCents,
+            discountAmount = Money.ofCents(state.discountAmountCents),
             discountPercent = state.discountPercent,
             surchargeType = state.surchargeType,
-            surchargeAmountCents = state.surchargeAmountCents,
+            surchargeAmount = Money.ofCents(state.surchargeAmountCents),
             surchargePercent = state.surchargePercent,
-            shippingFeeCents = state.shippingFeeCents,
+            shippingFee = Money.ofCents(state.shippingFeeCents),
             taxRate = state.globalTaxRate,
-            taxType = state.globalTaxType
+            taxType = state.globalTaxType,
+            supplyType = state.supplyType,
+            roundOffEnabled = state.roundOffEnabled
         )
 
         _uiState.update { it.copy(calculated = calculated) }
     }
 
-    private fun updateSequenceNumber() {
+    /**
+     * Reserves the next invoice number for the selected business, client and
+     * document type. The number is persisted so it is never reused.
+     */
+    private fun reserveNextNumber() {
         val state = _uiState.value
         val businessId = state.selectedBusiness?.id ?: return
         val clientId = state.selectedClient?.id ?: return
@@ -211,77 +235,104 @@ class InvoiceFormViewModel @Inject constructor(
         val currency = state.selectedCurrency ?: return
 
         viewModelScope.launch {
-            _uiState.update { it.copy(isSaving = true) }
+            _uiState.update { it.copy(isSaving = true, errorMessage = null) }
 
-            val invoice = Invoice(
-                invoiceType = state.invoiceType,
-                businessId = business.id,
-                clientId = client.id,
-                currencyId = currency.id,
-                bankId = state.selectedBank?.id,
-                invoiceNumber = state.invoiceNumber,
-                invoicePrefix = state.prefix,
-                invoiceSuffix = state.suffix,
-                issuedAt = state.issueDate,
-                dueDate = state.dueDate,
-                status = InvoiceStatus.unpaid,
-                discountType = state.discountType,
-                discountAmountCents = state.discountAmountCents.toLong().toString(),
-                discountPercent = state.discountPercent,
-                surchargeType = state.surchargeType,
-                surchargeAmountCents = state.surchargeAmountCents.toLong().toString(),
-                surchargePercent = state.surchargePercent,
-                shippingFeeCents = state.shippingFeeCents.toLong().toString(),
-                taxRate = state.globalTaxRate,
-                taxType = state.globalTaxType,
-                customerNotes = state.customerNotes.ifBlank { null },
-                termsConditionNotes = state.termsNotes.ifBlank { null }
-            )
-
-            val lineItems = state.lineItems.map {
-                InvoiceLineItem(
-                    itemId = it.itemId,
-                    quantity = it.quantity.toString(),
-                    taxRate = it.taxRate,
-                    taxType = it.taxType
-                )
+            try {
+                persistInvoice(state, business, client, currency)
+                _uiState.update { it.copy(isSaving = false, isSuccess = true) }
+                onSuccess()
+            } catch (e: Exception) {
+                // Never crash on a failed write: report it and keep the form open.
+                _uiState.update {
+                    it.copy(
+                        isSaving = false,
+                        errorMessage = e.message ?: "Unable to save the invoice"
+                    )
+                }
             }
-
-            val currencyModel = Currency(
-                id = currency.id,
-                code = currency.code,
-                symbol = currency.symbol,
-                text = currency.text,
-                format = currency.format,
-                subunit = currency.subunit
-            )
-
-            val bankModel = state.selectedBank?.let {
-                Bank(
-                    id = it.id,
-                    name = it.name,
-                    bankName = it.bankName,
-                    accountNumber = it.accountNumber,
-                    swiftCode = it.swiftCode,
-                    address = it.address,
-                    upiCode = it.upiCode
-                )
-            }
-
-            invoiceRepository.createInvoice(
-                CreateInvoiceParam(
-                    invoice = invoice,
-                    items = lineItems,
-                    business = business,
-                    client = client,
-                    currency = currencyModel,
-                    bank = bankModel,
-                    layoutSchemaJson = null
-                )
-            )
-
-            _uiState.update { it.copy(isSaving = false, isSuccess = true) }
-            onSuccess()
         }
+    }
+
+    private suspend fun persistInvoice(
+        state: InvoiceFormUiState,
+        business: Business,
+        client: Client,
+        currency: CurrencyEntity
+    ) {
+        val invoice = Invoice(
+            invoiceType = state.invoiceType,
+            businessId = business.id,
+            clientId = client.id,
+            currencyId = currency.id,
+            bankId = state.selectedBank?.id,
+            invoiceNumber = state.invoiceNumber,
+            invoicePrefix = state.prefix,
+            invoiceSuffix = state.suffix,
+            issuedAt = state.issueDate,
+            dueDate = state.dueDate,
+            status = InvoiceStatus.unpaid,
+            discountType = state.discountType,
+            discountAmountCents = state.discountAmountCents.toLong().toString(),
+            discountPercent = state.discountPercent,
+            surchargeType = state.surchargeType,
+            surchargeAmountCents = state.surchargeAmountCents.toLong().toString(),
+            surchargePercent = state.surchargePercent,
+            shippingFeeCents = state.shippingFeeCents.toLong().toString(),
+            taxRate = state.globalTaxRate,
+            taxType = state.globalTaxType,
+            customerNotes = state.customerNotes.ifBlank { null },
+            termsConditionNotes = state.termsNotes.ifBlank { null },
+            totalCents = state.calculated?.payableTotal?.paise?.toString() ?: "0",
+            amountInWords = state.calculated?.amountInWords,
+            roundOffCents = state.calculated?.roundOff?.paise?.toString() ?: "0"
+        )
+
+        val lineItems = state.lineItems.map {
+            InvoiceLineItem(
+                itemId = it.itemId,
+                quantity = it.quantity.toString(),
+                taxRate = it.taxRate,
+                taxType = it.taxType,
+                // Immutable snapshots: catalogue edits must never rewrite an issued invoice.
+                itemName = it.name,
+                unitPriceCents = it.unitPrice.paise.toString(),
+                hsnCode = it.hsnCode,
+                gstRate = it.taxRate,
+                lineTotalCents = (it.unitPrice.paise * it.quantity).toLong().toString()
+            )
+        }
+
+        val currencyModel = Currency(
+            id = currency.id,
+            code = currency.code,
+            symbol = currency.symbol,
+            text = currency.text,
+            format = currency.format,
+            subunit = currency.subunit
+        )
+
+        val bankModel = state.selectedBank?.let {
+            Bank(
+                id = it.id,
+                name = it.name,
+                bankName = it.bankName,
+                accountNumber = it.accountNumber,
+                swiftCode = it.swiftCode,
+                address = it.address,
+                upiCode = it.upiCode
+            )
+        }
+
+        invoiceRepository.createInvoice(
+            CreateInvoiceParam(
+                invoice = invoice,
+                items = lineItems,
+                business = business,
+                client = client,
+                currency = currencyModel,
+                bank = bankModel,
+                layoutSchemaJson = null
+            )
+        )
     }
 }

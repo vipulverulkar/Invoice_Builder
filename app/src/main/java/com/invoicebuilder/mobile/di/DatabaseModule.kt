@@ -24,7 +24,6 @@ object DatabaseModule {
             AppDatabase::class.java,
             "invoice_builder.db"
         )
-        .fallbackToDestructiveMigration()
         .build()
     }
 

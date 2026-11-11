@@ -31,3 +31,8 @@ dependencies {
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.truth)
 }
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+    arg("room.generateKotlin", "true")
+}

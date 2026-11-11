@@ -24,6 +24,12 @@ data class Business(
     val countryCode: String? = null,
     val peppolEndpointSchemeId: String? = null,
     val description: String? = null,
+    // Indian GST master data
+    val gstin: String? = null,
+    val pan: String? = null,
+    val stateCode: String? = null,
+    val registrationType: GstRegistrationType? = null,
+    val declaration: String? = null,
     val isArchived: Boolean = false,
     val createdAt: String? = null,
     val updatedAt: String? = null
@@ -45,6 +51,13 @@ data class Client(
     val peppolEndpointSchemeId: String? = null,
     val buyerReference: String? = null,
     val description: String? = null,
+    // Indian GST master data
+    val gstin: String? = null,
+    val tradeName: String? = null,
+    val stateCode: String? = null,
+    val tdsSection: String? = null,
+    val tdsRate: Double = 0.0,
+    val tcsApplicable: Boolean = false,
     val isArchived: Boolean = false,
     val createdAt: String? = null,
     val updatedAt: String? = null
@@ -58,6 +71,11 @@ data class Item(
     val unitId: Long? = null,
     val categoryId: Long? = null,
     val description: String? = null,
+    // Indian GST master data
+    val hsnCode: String? = null,
+    val gstRate: Double = 0.0,
+    val unitCode: UnitOfMeasure? = null,
+    val itemType: ItemType? = null,
     val isArchived: Boolean = false,
     val createdAt: String? = null,
     val updatedAt: String? = null
@@ -102,6 +120,9 @@ data class Bank(
     val upiCode: String? = null,
     val qrCode: ByteArray? = null,
     val accountHolder: String? = null,
+    // Indian banking details
+    val ifscCode: String? = null,
+    val upiId: String? = null,
     val isArchived: Boolean = false
 )
 
@@ -121,9 +142,17 @@ data class Settings(
     val reportsON: Boolean = true,
     val styleProfilesON: Boolean = true,
     val presetsON: Boolean = true,
-    val ublON: Boolean = true,
-    val xrechnungON: Boolean = true,
-    val receiptPrintingOn: Boolean = true
+    val receiptPrintingOn: Boolean = true,
+    // Indian GST preferences
+    val financialYear: String? = null,
+    val defaultStateCode: String? = null,
+    val gstRegistrationOn: Boolean = false,
+    val roundOffEnabled: Boolean = true,
+    val defaultInvoiceKind: InvoiceKind? = null,
+    val gstnClientId: String? = null,
+    val gstnClientSecret: String? = null,
+    val gstnGstin: String? = null,
+    val gstnEnvironment: String? = null
 )
 
 @Serializable
@@ -162,7 +191,23 @@ data class Invoice(
     val taxType: TaxType? = null,
     val signatureData: ByteArray? = null,
     val styleProfilesId: Long? = null,
-    val language: String = "en"
+    val language: String = "en",
+    // Indian GST compliance fields
+    val invoiceKind: InvoiceKind? = null,
+    val placeOfSupply: String? = null,
+    val reverseCharge: Boolean = false,
+    val roundOffCents: String = "0",
+    val amountInWords: String? = null,
+    val tdsSection: String? = null,
+    val tdsAmountCents: String = "0",
+    val tcsSection: String? = null,
+    val tcsAmountCents: String = "0",
+    val totalCents: String = "0",
+    val irn: String? = null,
+    val ackNumber: String? = null,
+    val ackDate: String? = null,
+    val ewbNumber: String? = null,
+    val ewbDate: String? = null
 ) {
     val fullInvoiceNumber: String
         get() = "${invoicePrefix.orEmpty()}$invoiceNumber${invoiceSuffix.orEmpty()}"
@@ -176,7 +221,16 @@ data class InvoiceLineItem(
     val customField: String? = null,
     val quantity: String = "1",
     val taxRate: Double = 0.0,
-    val taxType: InvoiceItemTaxType? = null
+    val taxType: InvoiceItemTaxType? = null,
+    // Immutable snapshots so catalogue edits never rewrite issued invoices
+    val itemName: String? = null,
+    val unitPriceCents: String = "0",
+    val hsnCode: String? = null,
+    val gstRate: Double = 0.0,
+    val discountType: DiscountType? = null,
+    val discountAmountCents: String = "0",
+    val unitCode: UnitOfMeasure? = null,
+    val lineTotalCents: String = "0"
 )
 
 @Serializable
@@ -186,34 +240,4 @@ data class InvoicePayment(
     val amountCents: String,
     val paidAt: String,
     val paymentMethod: String
-)
-
-@Serializable
-data class CalculatedLine(
-    val lineAmount: Double,
-    val unitAmount: Double,
-    val taxAmount: Double,
-    val taxRate: Double,
-    val taxCategoryId: String,
-    val grossAmount: Double,
-    val discountAmount: Double
-)
-
-@Serializable
-data class VatGroup(
-    val rate: Double,
-    val taxable: Double,
-    val tax: Double
-)
-
-@Serializable
-data class CalculatedInvoice(
-    val lines: List<CalculatedLine>,
-    val subtotalNet: Double,
-    val discountTotal: Double,
-    val shippingTotal: Double,
-    val surchargeTotal: Double,
-    val taxTotal: Double,
-    val payableTotal: Double,
-    val vatGroups: List<VatGroup>
 )

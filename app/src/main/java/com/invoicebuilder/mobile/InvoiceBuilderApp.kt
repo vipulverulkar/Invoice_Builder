@@ -6,7 +6,6 @@ import com.invoicebuilder.core.database.dao.CurrencyDao
 import com.invoicebuilder.core.database.entity.BusinessEntity
 import com.invoicebuilder.core.database.entity.CurrencyEntity
 import com.invoicebuilder.core.model.CurrencyFormat
-import com.invoicebuilder.core.pdf.FacturXAttacher
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +27,6 @@ class InvoiceBuilderApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        FacturXAttacher.init(this)
         appScope.launch { seedDefaults() }
     }
 

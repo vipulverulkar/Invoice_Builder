@@ -21,12 +21,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import com.invoicebuilder.core.calculator.ItemCalculationInput
-import com.invoicebuilder.core.einvoice.UblXmlGenerator
+import com.invoicebuilder.core.gstn.GstEInvoiceJsonBuilder
 import com.invoicebuilder.core.model.Business
 import com.invoicebuilder.core.model.Client
 import com.invoicebuilder.core.model.CurrencyFormat
+import com.invoicebuilder.core.model.GstSupplyType
 import com.invoicebuilder.core.model.Invoice
-import com.invoicebuilder.core.pdf.FacturXAttacher
+import com.invoicebuilder.core.model.Money
 import com.invoicebuilder.core.pdf.PdfGenerator
 import com.invoicebuilder.core.pdf.PdfInvoiceData
 import kotlinx.coroutines.Dispatchers
@@ -47,36 +48,64 @@ fun InvoicePreviewScreen(
 ) {
     val context = LocalContext.current
     var isGenerating by remember { mutableStateOf(true) }
-    var hybridPdfBytes by remember { mutableStateOf<ByteArray?>(null) }
-    var xmlContent by remember { mutableStateOf<String?>(null) }
+    var pdfBytes by remember { mutableStateOf<ByteArray?>(null) }
+    var eInvoiceJson by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(invoice.id) {
         withContext(Dispatchers.IO) {
-            // 1. Generate base PDF
-            val basePdf = PdfGenerator.generatePdf(
+            val supplyType = if (!invoice.placeOfSupply.isNullOrBlank() &&
+                business.stateCode != null &&
+                invoice.placeOfSupply != business.stateCode
+            ) {
+                GstSupplyType.InterState
+            } else {
+                GstSupplyType.IntraState
+            }
+
+            // 1. GST compliant tax invoice PDF
+            pdfBytes = PdfGenerator.generatePdf(
                 PdfInvoiceData(
                     invoice = invoice,
                     business = business,
                     client = client,
                     currencySymbol = currencySymbol,
                     items = items,
-                    itemNames = itemNames
+                    itemNames = itemNames,
+                    supplyType = supplyType
                 )
             )
 
-            // 2. Generate UBL 2.1 XML
-            val xml = UblXmlGenerator.generateUblXml(
-                invoice = invoice,
-                business = business,
-                client = client,
-                currencyCode = CurrencyFormat.CODE,
-                items = items
+            // 2. GST e-invoice payload (uploadable through the GSTN offline utility)
+            eInvoiceJson = GstEInvoiceJsonBuilder.build(
+                GstEInvoiceJsonBuilder.Document(
+                    gstin = business.gstin.orEmpty(),
+                    legalName = business.name,
+                    invoiceNumber = invoice.fullInvoiceNumber,
+                    invoiceDate = invoice.issuedAt.take(10),
+                    invoiceType = invoice.invoiceKind?.name ?: "TaxInvoice",
+                    placeOfSupplyCode = invoice.placeOfSupply ?: business.stateCode.orEmpty(),
+                    reverseCharge = invoice.reverseCharge,
+                    buyerGstin = client.gstin,
+                    buyerName = client.name,
+                    buyerAddress = client.address,
+                    buyerStateCode = client.stateCode,
+                    lines = items.mapIndexed { index, item ->
+                        GstEInvoiceJsonBuilder.Line(
+                            itemName = itemNames.getOrElse(index) { item.itemName },
+                            hsnCode = item.hsnCode.orEmpty(),
+                            quantity = item.quantity,
+                            unitPricePaise = item.unitPrice.paise,
+                            discountPaise = 0,
+                            taxableValuePaise = item.unitPrice.paise * item.quantity.toLong(),
+                            gstRate = item.taxRate ?: 0.0,
+                            totalPaise = item.unitPrice.paise * item.quantity.toLong()
+                        )
+                    },
+                    totalPaise = Money.ofCents(invoice.totalCents).paise,
+                    otherTerms = invoice.customerNotes
+                )
             )
-            xmlContent = xml
 
-            // 3. Attach XML to PDF creating Factur-X / ZUGFeRD hybrid invoice
-            val hybridPdf = FacturXAttacher.attachXml(basePdf, xml.toByteArray(Charsets.UTF_8))
-            hybridPdfBytes = hybridPdf
             isGenerating = false
         }
     }
@@ -93,7 +122,7 @@ fun InvoicePreviewScreen(
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            "PDF & E-Invoice Preview",
+                            "Tax Invoice & E-Invoice Preview",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -107,7 +136,7 @@ fun InvoicePreviewScreen(
                 actions = {
                     IconButton(
                         onClick = {
-                            hybridPdfBytes?.let { bytes ->
+                            pdfBytes?.let { bytes ->
                                 sharePdf(context, bytes, "Invoice_${invoice.fullInvoiceNumber}.pdf")
                             }
                         },
@@ -138,7 +167,7 @@ fun InvoicePreviewScreen(
                     ) {
                         CircularProgressIndicator(strokeWidth = 3.dp)
                         Text(
-                            "Generating hybrid PDF (Factur-X & UBL)...",
+                            "Generating GST Tax Invoice...",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -177,14 +206,14 @@ fun InvoicePreviewScreen(
                         }
                         Spacer(modifier = Modifier.height(18.dp))
                         Text(
-                            "Hybrid E-Invoice PDF Ready",
+                            "GST Tax Invoice Ready",
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            "Embedded with PEPPOL BIS 3.0 / XRechnung UBL XML",
+                            "Export the PDF for your customer or the JSON for the GSTN portal",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -200,7 +229,7 @@ fun InvoicePreviewScreen(
                     Button(
                         modifier = Modifier.weight(1f),
                         onClick = {
-                            hybridPdfBytes?.let { bytes ->
+                            pdfBytes?.let { bytes ->
                                 sharePdf(context, bytes, "Invoice_${invoice.fullInvoiceNumber}.pdf")
                             }
                         },
@@ -215,15 +244,15 @@ fun InvoicePreviewScreen(
                     OutlinedButton(
                         modifier = Modifier.weight(1f),
                         onClick = {
-                            xmlContent?.let { xml ->
-                                shareXml(context, xml, "ubl_${invoice.fullInvoiceNumber}.xml")
+                            eInvoiceJson?.let { json ->
+                                shareJson(context, json, "einvoice_${invoice.fullInvoiceNumber}.json")
                             }
                         },
                         shape = RoundedCornerShape(14.dp)
                     ) {
                         Icon(Icons.Outlined.Code, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Export XML")
+                        Text("Export JSON")
                     }
                 }
             }
@@ -246,17 +275,17 @@ private fun sharePdf(context: Context, pdfBytes: ByteArray, filename: String) {
     context.startActivity(Intent.createChooser(shareIntent, "Share Invoice PDF"))
 }
 
-private fun shareXml(context: Context, xmlString: String, filename: String) {
+private fun shareJson(context: Context, json: String, filename: String) {
     val cachePath = File(context.cacheDir, "invoices")
     cachePath.mkdirs()
     val file = File(cachePath, filename)
-    FileOutputStream(file).use { it.write(xmlString.toByteArray(Charsets.UTF_8)) }
+    FileOutputStream(file).use { it.write(json.toByteArray(Charsets.UTF_8)) }
 
     val contentUri: Uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
     val shareIntent = Intent(Intent.ACTION_SEND).apply {
-        type = "application/xml"
+        type = "application/json"
         putExtra(Intent.EXTRA_STREAM, contentUri)
         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     }
-    context.startActivity(Intent.createChooser(shareIntent, "Share UBL XML"))
+    context.startActivity(Intent.createChooser(shareIntent, "Share E-Invoice JSON"))
 }

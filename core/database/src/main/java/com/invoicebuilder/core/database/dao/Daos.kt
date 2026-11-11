@@ -140,7 +140,7 @@ interface InvoiceDao {
     suspend fun archiveInvoice(id: Long)
 
     @Insert
-    suspend fun insertItems(items: List<InvoiceItemEntity>)
+    suspend fun insertItems(items: List<InvoiceItemEntity>): List<Long>
 
     @Insert
     suspend fun insertPayment(payment: InvoicePaymentEntity): Long

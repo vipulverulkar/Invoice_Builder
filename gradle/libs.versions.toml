@@ -15,6 +15,8 @@ image-cropper = "4.6.0"
 reorderable = "2.4.0"
 zxing = "3.5.3"
 coil = "2.7.0"
+security-crypto = "1.1.0-alpha06"
+okhttp = "4.12.0"
 junit = "5.11.3"
 junit-platform = "1.11.3"
 truth = "1.4.4"
@@ -52,8 +54,17 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 
-# PDF & Factur-X Attachment
+# PDF Rendering
 pdfbox-android = { group = "com.tom-roush", name = "pdfbox-android", version.ref = "pdfbox-android" }
+
+# QR Codes (UPI payment QR + IRN QR)
+zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
+
+# Secure credential storage (GSTN API credentials)
+security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security-crypto" }
+
+# HTTP client for the GSTN gateway
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 
 # Charts (Vico)
 vico-compose = { group = "com.patrykandpatrick.vico", name = "compose", version.ref = "vico" }
@@ -62,7 +73,6 @@ vico-compose-m3 = { group = "com.patrykandpatrick.vico", name = "compose-m3", ve
 # UI Helpers & Hardware
 image-cropper = { group = "com.vanniktech", name = "android-image-cropper", version.ref = "image-cropper" }
 reorderable = { group = "sh.calvin.reorderable", name = "reorderable", version.ref = "reorderable" }
-zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 # Testing

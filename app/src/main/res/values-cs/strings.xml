@@ -33,8 +33,6 @@
     <string name="banks_filter_all_text">Všechny banky</string>
     <string name="banks_filter_archived_desc">Banky, které byly archivovány</string>
     <string name="banks_filter_archived_text">Archivované banky</string>
-    <string name="banks_filter_atleast_one_invoice_desc">Banky, které mají alespoň jednu fakturu</string>
-    <string name="banks_filter_atleast_one_invoice_text">Banky s fakturami</string>
     <string name="banks_filter_no_invoices30_desc">Žádné faktury za posledních 30 dní</string>
     <string name="banks_filter_no_invoices30_text">Neaktivní banky (30 dní)</string>
     <string name="banks_filter_no_invoices60_desc">Žádné faktury za posledních 60 dní</string>
@@ -50,8 +48,6 @@
     <string name="businesses_filter_all_text">Všechny firmy</string>
     <string name="businesses_filter_archived_desc">Firmy, které byly archivovány</string>
     <string name="businesses_filter_archived_text">Archivované firmy</string>
-    <string name="businesses_filter_atleast_one_invoice_desc">Firmy, které mají alespoň jednu fakturu</string>
-    <string name="businesses_filter_atleast_one_invoice_text">Firmy s fakturami</string>
     <string name="businesses_filter_no_invoices30_desc">Žádné faktury za posledních 30 dní</string>
     <string name="businesses_filter_no_invoices30_text">Neaktivní firmy (30 dní)</string>
     <string name="businesses_filter_no_invoices60_desc">Žádné faktury za posledních 60 dní</string>
@@ -70,8 +66,6 @@
     <string name="categories_filter_all_text">Všechny kategorie</string>
     <string name="categories_filter_archived_desc">Kategorie, které byly archivovány</string>
     <string name="categories_filter_archived_text">Archivované kategorie</string>
-    <string name="categories_filter_atleast_one_invoice_desc">Kategorie, které mají alespoň jednu fakturu</string>
-    <string name="categories_filter_atleast_one_invoice_text">Kategorie s fakturami</string>
     <string name="categories_filter_no_invoices30_desc">Žádné faktury za posledních 30 dní</string>
     <string name="categories_filter_no_invoices30_text">Neaktivní kategorie (30 dní)</string>
     <string name="categories_filter_no_invoices60_desc">Žádné faktury za posledních 60 dní</string>
@@ -87,8 +81,6 @@
     <string name="clients_filter_all_text">Všichni klienti</string>
     <string name="clients_filter_archived_desc">Klienti, kteří byli archivováni</string>
     <string name="clients_filter_archived_text">Archivovaní klienti</string>
-    <string name="clients_filter_atleast_one_invoice_desc">Klienti, kteří mají alespoň jednu fakturu</string>
-    <string name="clients_filter_atleast_one_invoice_text">Klienti s fakturami</string>
     <string name="clients_filter_no_invoices30_desc">Žádné faktury za posledních 30 dní</string>
     <string name="clients_filter_no_invoices30_text">Neaktivní klienti (30 dní)</string>
     <string name="clients_filter_no_invoices60_desc">Žádné faktury za posledních 60 dní</string>
@@ -117,7 +109,6 @@
     <string name="common_branch_code_invalid">Kód pobočky musí mít 3–6 alfanumerických znaků</string>
     <string name="common_branding">Branding</string>
     <string name="common_buyer_reference">Reference kupujícího</string>
-    <string name="common_buyer_reference_u_b_l">Zadejte referenci zákazníka nebo kód oddělení (např. pro směrování Peppol)</string>
     <string name="common_buyer_reference_x_rechnung">Zadejte povinné Leitweg-ID poskytnuté německým úřadem (např. 991-01234-56)</string>
     <string name="common_cancel">Zrušit</string>
     <string name="common_cash">Hotovost</string>
@@ -152,8 +143,6 @@
     <string name="common_email">E-mail</string>
     <string name="common_export">Exportovat</string>
     <string name="common_export_p_d_f">Exportovat PDF</string>
-    <string name="common_export_p_d_f_embedded_u_b_l">Exportovat PDF (s vloženým UBL)</string>
-    <string name="common_export_u_b_l_x_m_l">Exportovat UBL XML</string>
     <string name="common_export_x_rechnung_x_m_l">Exportovat XRechnung XML</string>
     <string name="common_exported">Exportováno</string>
     <string name="common_exported_to">Exportováno do %s</string>
@@ -168,8 +157,6 @@
     <string name="common_invalid_country_code">neplatný kód země</string>
     <string name="common_invalid_email">Neplatný formát e-mailu</string>
     <string name="common_invalid_form">Formulář je neplatný. Vyplňte prosím povinná pole</string>
-    <string name="common_invalid_peppol_endpoint_id">Neplatné ID koncového bodu PEPPOL</string>
-    <string name="common_invalid_peppol_endpoint_scheme_id">Neplatné schéma koncového bodu PEPPOL</string>
     <string name="common_invalid_phone">Neplatný formát telefonního čísla</string>
     <string name="common_invoice">Faktura</string>
     <string name="common_invoice_no">Faktura č.</string>
@@ -190,7 +177,6 @@
     <string name="common_light">Světlý</string>
     <string name="common_logo_size_style">Velikost loga</string>
     <string name="common_logout_confirm">Budete odhlášeni a vráceni na obrazovku výběru databáze. Pokračovat?</string>
-    <string name="common_make_invoice">Vystavit fakturu</string>
     <string name="common_medium">Střední</string>
     <string name="common_modern">Moderní</string>
     <string name="common_name">Název / Jméno</string>
@@ -208,10 +194,6 @@
     <string name="common_payment_info">Platební informace</string>
     <string name="common_payment_info_legacy">Toto jsou zastaralé platební informace. Nové platební údaje by měly být nastaveny v sekci Banka.</string>
     <string name="common_paypal">PayPal</string>
-    <string name="common_peppol_endpoint_id">ID koncového bodu PEPPOL</string>
-    <string name="common_peppol_endpoint_id_helper">Identifikátor účastníka/koncového bodu</string>
-    <string name="common_peppol_endpoint_scheme_id">Schéma koncového bodu PEPPOL</string>
-    <string name="common_peppol_endpoint_scheme_id_helper">Číselný/písmenný identifikátor schématu</string>
     <string name="common_phone">Telefon</string>
     <string name="common_phone_helper">Zadejte telefonní číslo v mezinárodním formátu</string>
     <string name="common_port">Port</string>
@@ -282,8 +264,6 @@
     <string name="currencies_filter_all_text">Všechny měny</string>
     <string name="currencies_filter_archived_desc">Měny, které byly archivovány</string>
     <string name="currencies_filter_archived_text">Archivované měny</string>
-    <string name="currencies_filter_atleast_one_invoice_desc">Měny, které mají alespoň jednu fakturu</string>
-    <string name="currencies_filter_atleast_one_invoice_text">Měny s fakturami</string>
     <string name="currencies_filter_no_invoices30_desc">Žádné faktury za posledních 30 dní</string>
     <string name="currencies_filter_no_invoices30_text">Neaktivní měny (30 dní)</string>
     <string name="currencies_filter_no_invoices60_desc">Žádné faktury za posledních 60 dní</string>
@@ -296,10 +276,6 @@
     <string name="currencies_no_item">Vyberte měnu pro zobrazení podrobností.</string>
     <string name="currencies_subunit">Dílčí jednotka</string>
     <string name="currencies_symbol">Symbol</string>
-    <string name="customize_invoice_include_business_name">Zahrnout název firmy</string>
-    <string name="customize_invoice_include_month">Zahrnout měsíc</string>
-    <string name="customize_invoice_include_year">Zahrnout rok</string>
-    <string name="customize_invoice_letters_and_numbers">Povolena jsou pouze písmena a číslice</string>
     <string name="database_chooser_connect">Připojit k databázi</string>
     <string name="database_chooser_create_new">Vytvořit novou databázi</string>
     <string name="database_chooser_description">Vyberte stávající databázi nebo vytvořte novou. Často používané databáze si můžete zapamatovat pro rychlý přístup.</string>
@@ -348,14 +324,6 @@
     <string name="error_no_printer_available">Není k dispozici žádná tiskárna. Připojte nebo nakonfigurujte tiskárnu a zkuste to znovu.</string>
     <string name="error_no_up_function">Migrace neexportuje up()</string>
     <string name="error_no_worksheet_found">Nebyl nalezen žádný pracovní list</string>
-    <string name="error_peppol_business_c_c">Pro faktury splňující PEPPOL je vyžadován kód země firmy</string>
-    <string name="error_peppol_business_schema">Pro faktury splňující PEPPOL je vyžadováno ID koncového bodu a ID schématu firmy</string>
-    <string name="error_peppol_business_v_a_t_code">Pro faktury splňující PEPPOL je vyžadováno DIČ nebo kód firmy</string>
-    <string name="error_peppol_client_c_c">Pro faktury splňující PEPPOL je vyžadován kód země klienta</string>
-    <string name="error_peppol_client_reference">Pro faktury splňující PEPPOL je vyžadována reference kupujícího</string>
-    <string name="error_peppol_client_schema">Pro faktury splňující PEPPOL je vyžadováno ID koncového bodu a ID schématu klienta</string>
-    <string name="error_peppol_due_date">Pro faktury splňující PEPPOL je vyžadováno datum splatnosti</string>
-    <string name="error_peppol_not_supported">Faktura není podporována pro UBL 2.1 XML v souladu s PEPPOL BIS Billing 3.0</string>
     <string name="error_postgres_config">Je vyžadována konfigurace Postgres</string>
     <string name="error_postgres_conflict_target">Postgres vyžaduje cíl konfliktu (conflict target) pro tabulku</string>
     <string name="error_postgres_credentials_required">Po restartu jsou opět vyžadovány přihlašovací údaje k PostgreSQL</string>
@@ -370,17 +338,6 @@
     <string name="error_unsupported_image">Nepodporovaný typ obrázku</string>
     <string name="error_unsupported_value">Nepodporovaný typ hodnoty pro klíč</string>
     <string name="error_workspace_access_denied">K tomuto pracovnímu prostoru nemáte přístup</string>
-    <string name="error_xrechnung_business_c_c">Pro faktury splňující XRechnung je vyžadován kód země firmy</string>
-    <string name="error_xrechnung_business_email">Pro faktury splňující XRechnung je vyžadován e-mail firmy</string>
-    <string name="error_xrechnung_business_phone">Pro faktury splňující XRechnung je vyžadován telefon firmy</string>
-    <string name="error_xrechnung_business_schema">Pro faktury splňující XRechnung je vyžadováno ID firmy a schéma ID</string>
-    <string name="error_xrechnung_business_v_a_t_code">Pro faktury splňující XRechnung je vyžadováno DIČ nebo daňové číslo firmy</string>
-    <string name="error_xrechnung_client_address">Pro faktury splňující XRechnung je vyžadována adresa klienta</string>
-    <string name="error_xrechnung_client_c_c">Pro faktury splňující XRechnung je vyžadován kód země klienta</string>
-    <string name="error_xrechnung_client_reference">Pro faktury splňující XRechnung je vyžadováno Leitweg-ID (reference kupujícího)</string>
-    <string name="error_xrechnung_client_schema">Pro faktury splňující XRechnung je vyžadováno ID klienta a schéma ID</string>
-    <string name="error_xrechnung_due_date">Pro faktury splňující XRechnung je vyžadováno datum splatnosti</string>
-    <string name="error_xrechnung_not_supported">Faktura není podporována pro UBL 2.1 XML v souladu s XRechnung 3.0</string>
     <string name="invoices_add_discount">Přidat slevu</string>
     <string name="invoices_add_invoice">Přidat fakturu</string>
     <string name="invoices_add_bill_to">Přidat odběratele</string>
@@ -464,8 +421,6 @@
     <string name="items_filter_all_text">Všechny položky</string>
     <string name="items_filter_archived_desc">Položky, které byly archivovány</string>
     <string name="items_filter_archived_text">Archivované položky</string>
-    <string name="items_filter_atleast_one_invoice_desc">Položky, které mají alespoň jednu fakturu</string>
-    <string name="items_filter_atleast_one_invoice_text">Položky s fakturami</string>
     <string name="items_filter_no_invoices30_desc">Žádné faktury za posledních 30 dní</string>
     <string name="items_filter_no_invoices30_text">Neaktivní položky (30 dní)</string>
     <string name="items_filter_no_invoices60_desc">Žádné faktury za posledních 60 dní</string>
@@ -496,8 +451,6 @@
     <string name="layouts_filter_all_text">Všechny vzhledy</string>
     <string name="layouts_filter_archived_desc">Vzhledy, které byly archivovány</string>
     <string name="layouts_filter_archived_text">Archivované vzhledy</string>
-    <string name="layouts_filter_atleast_one_invoice_desc">Vzhledy, které mají alespoň jednu fakturu</string>
-    <string name="layouts_filter_atleast_one_invoice_text">Vzhledy s fakturami</string>
     <string name="layouts_filter_no_invoices30_desc">Žádné faktury za posledních 30 dní</string>
     <string name="layouts_filter_no_invoices30_text">Neaktivní vzhledy (30 dní)</string>
     <string name="layouts_filter_no_invoices60_desc">Žádné faktury za posledních 60 dní</string>
@@ -629,7 +582,6 @@
     <string name="reports_total_invoices">%s Faktur</string>
     <string name="settings_menu_items_descriptions_about">Dozvědět se více o této aplikaci a jejích funkcích.</string>
     <string name="settings_menu_items_descriptions_buy_me_coffee">Podpořte projekt jednorázovým příspěvkem na kávu.</string>
-    <string name="settings_menu_items_descriptions_customize_invoice">Nastavení prefixu (např. INV) a suffixu čísla faktury.</string>
     <string name="settings_menu_items_descriptions_dark_mode">Přepínání mezi světlým a tmavým motivem.</string>
     <string name="settings_menu_items_descriptions_export">Exportujte svá data pro zálohu nebo pro použití v jiných aplikacích.</string>
     <string name="settings_menu_items_descriptions_github_sponsors">Podpořte Invoice Builder a pomozte aplikaci růst přes GitHub Sponsors.</string>
@@ -643,7 +595,6 @@
     <string name="settings_menu_items_descriptions_turn_receipt_printing">Povolit nebo zakázat tisk stvrzenek pro faktury a nabídky</string>
     <string name="settings_menu_items_descriptions_turn_reports">Povolit nebo zakázat funkci přehledů</string>
     <string name="settings_menu_items_descriptions_turn_style_profiles">Povolit nebo zakázat funkci profilů stylů</string>
-    <string name="settings_menu_items_descriptions_turn_u_b_l">Povolit export faktur ve formátu UBL 2.1 XML kompatibilním s PEPPOL BIS Billing 3.0</string>
     <string name="settings_menu_items_descriptions_turn_x_rechnung">Povolit export faktur ve formátu UBL 2.1 XML kompatibilním s německým standardem XRechnung 3.0</string>
     <string name="settings_menu_items_descriptions_tutorial">Podívejte se na návod, jak aplikaci používat</string>
     <string name="settings_menu_items_descriptions_wall_of_fame">Zobrazit přehled podporovatelů, kteří přispěli na aplikaci</string>
@@ -651,7 +602,6 @@
     <string name="settings_menu_items_titles_about">O aplikaci</string>
     <string name="settings_menu_items_titles_buy_me_coffee">Kupte mi kávu</string>
     <string name="settings_menu_items_titles_check_for_update">Zkontrolovat aktualizace</string>
-    <string name="settings_menu_items_titles_customize_invoice">Přizpůsobit fakturu</string>
     <string name="settings_menu_items_titles_dark_mode">Tmavý režim</string>
     <string name="settings_menu_items_titles_export">Export</string>
     <string name="settings_menu_items_titles_github_sponsors">GitHub Sponsors</string>
@@ -665,7 +615,6 @@
     <string name="settings_menu_items_titles_turn_receipt_printing">Tisk stvrzenek</string>
     <string name="settings_menu_items_titles_turn_reports">Přehledy</string>
     <string name="settings_menu_items_titles_turn_style_profiles">Profily stylů</string>
-    <string name="settings_menu_items_titles_turn_u_b_l">UBL 2.1 (PEPPOL BIS Billing 3.0)</string>
     <string name="settings_menu_items_titles_turn_x_rechnung">XRechnung (UBL 2.1)</string>
     <string name="settings_menu_items_titles_tutorial">Návod</string>
     <string name="settings_menu_items_titles_wall_of_fame">Zeď slávy</string>
@@ -677,8 +626,6 @@
     <string name="style_profiles_filter_all_text">Všechny profily stylů</string>
     <string name="style_profiles_filter_archived_desc">Profily stylů, které byly archivovány</string>
     <string name="style_profiles_filter_archived_text">Archivované profily stylů</string>
-    <string name="style_profiles_filter_atleast_one_invoice_desc">Profily stylů, které mají alespoň jednu fakturu</string>
-    <string name="style_profiles_filter_atleast_one_invoice_text">Profily stylů s fakturami</string>
     <string name="style_profiles_filter_no_invoices30_desc">Žádné faktury za posledních 30 dní</string>
     <string name="style_profiles_filter_no_invoices30_text">Neaktivní profily stylů (30 dní)</string>
     <string name="style_profiles_filter_no_invoices60_desc">Žádné faktury za posledních 60 dní</string>
@@ -695,8 +642,6 @@
     <string name="units_filter_all_text">Všechny jednotky</string>
     <string name="units_filter_archived_desc">Jednotky, které byly archivovány</string>
     <string name="units_filter_archived_text">Archivované jednotky</string>
-    <string name="units_filter_atleast_one_invoice_desc">Jednotky, které mají alespoň jednu fakturu</string>
-    <string name="units_filter_atleast_one_invoice_text">Jednotky s fakturami</string>
     <string name="units_filter_no_invoices30_desc">Žádné faktury za posledních 30 dní</string>
     <string name="units_filter_no_invoices30_text">Neaktivní jednotky (30 dní)</string>
     <string name="units_filter_no_invoices60_desc">Žádné faktury za posledních 60 dní</string>

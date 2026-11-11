@@ -33,8 +33,6 @@
     <string name="banks_filter_all_text">Visi bankai</string>
     <string name="banks_filter_archived_desc">Bankai, kurie buvo archyvuoti</string>
     <string name="banks_filter_archived_text">Archyvuoti bankai</string>
-    <string name="banks_filter_atleast_one_invoice_desc">Bankai, turintys bent vieną sąskaitą</string>
-    <string name="banks_filter_atleast_one_invoice_text">Bankai, kurie turi sąskaitų</string>
     <string name="banks_filter_no_invoices30_desc">Nėra sąskaitų per paskutines 30 dienų</string>
     <string name="banks_filter_no_invoices30_text">Neaktyvūs bankai (30 dienų)</string>
     <string name="banks_filter_no_invoices60_desc">Nėra sąskaitų per paskutines 60 dienų</string>
@@ -50,8 +48,6 @@
     <string name="businesses_filter_all_text">Visos įmonės</string>
     <string name="businesses_filter_archived_desc">Įmonės, kurios buvo archyvuotos</string>
     <string name="businesses_filter_archived_text">Archyvuotos įmonės</string>
-    <string name="businesses_filter_atleast_one_invoice_desc">Įmonės, turinčios bent vieną sąskaitą</string>
-    <string name="businesses_filter_atleast_one_invoice_text">Įmonės su bent viena sąskaita</string>
     <string name="businesses_filter_no_invoices30_desc">Nėra sąskaitų per pastarąsias 30 dienų</string>
     <string name="businesses_filter_no_invoices30_text">Neaktyvios įmonės (30 dienų)</string>
     <string name="businesses_filter_no_invoices60_desc">Nėra sąskaitų per pastarąsias 60 dienų</string>
@@ -70,8 +66,6 @@
     <string name="categories_filter_all_text">Visos kategorijos</string>
     <string name="categories_filter_archived_desc">Kategorijos, kurios buvo archyvuotos</string>
     <string name="categories_filter_archived_text">Archyvuotos kategorijos</string>
-    <string name="categories_filter_atleast_one_invoice_desc">Kategorijos, kurios turi bent vieną sąskaitą</string>
-    <string name="categories_filter_atleast_one_invoice_text">Kategorijos su sąskaitomis</string>
     <string name="categories_filter_no_invoices30_desc">Nėra sąskaitų per pastarąsias 30 dienų</string>
     <string name="categories_filter_no_invoices30_text">Neaktyvios kategorijos (30 dienų)</string>
     <string name="categories_filter_no_invoices60_desc">Nėra sąskaitų per pastarąsias 60 dienų</string>
@@ -87,8 +81,6 @@
     <string name="clients_filter_all_text">Visi klientai</string>
     <string name="clients_filter_archived_desc">Klientai, kurie buvo archyvuoti</string>
     <string name="clients_filter_archived_text">Archyvuoti klientai</string>
-    <string name="clients_filter_atleast_one_invoice_desc">Klientai, turintys bent vieną sąskaitą</string>
-    <string name="clients_filter_atleast_one_invoice_text">Klientai, turintys sąskaitas</string>
     <string name="clients_filter_no_invoices30_desc">Nėra sąskaitų per pastarąsias 30 dienų</string>
     <string name="clients_filter_no_invoices30_text">Neaktyvūs klientai (30 dienų)</string>
     <string name="clients_filter_no_invoices60_desc">Nėra sąskaitų per pastarąsias 60 dienų</string>
@@ -117,7 +109,6 @@
     <string name="common_branch_code_invalid">Filialo kodas turi būti 3–6 raidiniai skaitmeniniai simboliai</string>
     <string name="common_branding">Prekės ženklas</string>
     <string name="common_buyer_reference">Pirkėjo nuoroda</string>
-    <string name="common_buyer_reference_u_b_l">Įveskite pirkėjo nuorodą arba skyriaus kodą (pvz., „Peppol“ maršrutizavimui)</string>
     <string name="common_buyer_reference_x_rechnung">Įveskite privalomą Vokietijos institucijų suteiktą „Leitweg-ID“ (pvz., 991-01234-56)</string>
     <string name="common_cancel">Atšaukti</string>
     <string name="common_cash">Grynieji</string>
@@ -152,8 +143,6 @@
     <string name="common_email">El. paštas</string>
     <string name="common_export">Eksportuoti</string>
     <string name="common_export_p_d_f">Eksportuoti PDF</string>
-    <string name="common_export_p_d_f_embedded_u_b_l">Eksportuoti PDF (su įterptu UBL)</string>
-    <string name="common_export_u_b_l_x_m_l">Eksportuoti UBL XML</string>
     <string name="common_export_x_rechnung_x_m_l">Eksportuoti XRechnung XML</string>
     <string name="common_exported">Eksportuota</string>
     <string name="common_exported_to">Eksportuota į %s</string>
@@ -168,8 +157,6 @@
     <string name="common_invalid_country_code">Neteisingas šalies kodas</string>
     <string name="common_invalid_email">Neteisingas el. pašto formatas</string>
     <string name="common_invalid_form">Forma neteisinga. Prašome užpildyti privalomus laukus</string>
-    <string name="common_invalid_peppol_endpoint_id">Neteisingas PEPPOL galinio taško ID</string>
-    <string name="common_invalid_peppol_endpoint_scheme_id">Neteisinga PEPPOL galinio taško schema</string>
     <string name="common_invalid_phone">Neteisingas telefono numerio formatas</string>
     <string name="common_invoice">Sąskaita</string>
     <string name="common_invoice_no">Sąskaitos nr.</string>
@@ -190,7 +177,6 @@
     <string name="common_light">Šviesus</string>
     <string name="common_logo_size_style">Logotipo dydis</string>
     <string name="common_logout_confirm">Būsite atjungtas ir grąžinsite į duomenų bazės pasirinkimo ekraną. Tęsti?</string>
-    <string name="common_make_invoice">Sukurti sąskaitą</string>
     <string name="common_medium">Vidutinis</string>
     <string name="common_modern">Modernus</string>
     <string name="common_name">Pavadinimas</string>
@@ -208,10 +194,6 @@
     <string name="common_payment_info">Mokėjimo informacija</string>
     <string name="common_payment_info_legacy">Tai yra senstelėjusi mokėjimo informacija. Nauji mokėjimo duomenys turėtų būti nustatyti per Banko skiltį.</string>
     <string name="common_paypal">PayPal</string>
-    <string name="common_peppol_endpoint_id">PEPPOL galinio taško ID</string>
-    <string name="common_peppol_endpoint_id_helper">Dalyvio/galinio taško identifikatorius</string>
-    <string name="common_peppol_endpoint_scheme_id">PEPPOL galinio taško schema</string>
-    <string name="common_peppol_endpoint_scheme_id_helper">Skaitmeninis/raides schema identifikatorius</string>
     <string name="common_phone">Telefonas</string>
     <string name="common_phone_helper">Įveskite telefono numerį tarptautiniu formatu</string>
     <string name="common_port">Prievadas</string>
@@ -282,8 +264,6 @@
     <string name="currencies_filter_all_text">Visos valiutos</string>
     <string name="currencies_filter_archived_desc">Valiutos, kurios buvo archyvuotos</string>
     <string name="currencies_filter_archived_text">Archyvuotos valiutos</string>
-    <string name="currencies_filter_atleast_one_invoice_desc">Valiutos, kurios turi bent vieną sąskaitą</string>
-    <string name="currencies_filter_atleast_one_invoice_text">Valiutos, turinčios sąskaitų</string>
     <string name="currencies_filter_no_invoices30_desc">Nėra sąskaitų per pastarąsias 30 dienų</string>
     <string name="currencies_filter_no_invoices30_text">Neaktyvios valiutos (30 dienų)</string>
     <string name="currencies_filter_no_invoices60_desc">Nėra sąskaitų per pastarąsias 60 dienų</string>
@@ -296,10 +276,6 @@
     <string name="currencies_no_item">Pasirinkite valiutą, kad pamatytumėte jos informaciją.</string>
     <string name="currencies_subunit">Subvienetas</string>
     <string name="currencies_symbol">Simbolis</string>
-    <string name="customize_invoice_include_business_name">Įtraukti įmonės pavadinimą</string>
-    <string name="customize_invoice_include_month">Įtraukti mėnesį</string>
-    <string name="customize_invoice_include_year">Įtraukti metus</string>
-    <string name="customize_invoice_letters_and_numbers">Leidžiamos tik raidės ir skaičiai</string>
     <string name="database_chooser_connect">Prisijungti prie duomenų bazės</string>
     <string name="database_chooser_create_new">Sukurti duomenų bazę</string>
     <string name="database_chooser_description">Pasirinkite esamą duomenų bazę arba sukurkite naują. Galite išsaugoti dažnai naudojamas duomenų bazes greitam priėjimui.</string>
@@ -348,14 +324,6 @@
     <string name="error_no_printer_available">Nerasta jokio spausdintuvo. Prijunkite spausdintuvą ir bandykite dar kartą.</string>
     <string name="error_no_up_function">Migracija neeksportuoja up()</string>
     <string name="error_no_worksheet_found">Darbalapis nerastas</string>
-    <string name="error_peppol_business_c_c">Įmonės šalies kodas yra privalomas PEPPOL suderinamoms sąskaitoms</string>
-    <string name="error_peppol_business_schema">Įmonės Peppol endpoint ID ir schema ID yra privalomi PEPPOL suderinamoms sąskaitoms</string>
-    <string name="error_peppol_business_v_a_t_code">Įmonės PVM arba kodas yra privalomas PEPPOL suderinamoms sąskaitoms</string>
-    <string name="error_peppol_client_c_c">Kliento šalies kodas yra privalomas PEPPOL suderinamoms sąskaitoms</string>
-    <string name="error_peppol_client_reference">Kliento pirkėjo nuoroda yra privaloma PEPPOL suderinamoms sąskaitoms</string>
-    <string name="error_peppol_client_schema">Kliento Peppol endpoint ID ir schema ID yra privalomi PEPPOL suderinamoms sąskaitoms</string>
-    <string name="error_peppol_due_date">Mokėjimo data yra privaloma PEPPOL suderinamoms sąskaitoms</string>
-    <string name="error_peppol_not_supported">Sąskaita nepalaikoma UBL 2.1 XML su PEPPOL BIS Billing 3.0</string>
     <string name="error_postgres_config">Reikalinga Postgres konfigūracija</string>
     <string name="error_postgres_conflict_target">Postgres klaida su lentelėmis</string>
     <string name="error_postgres_credentials_required">Po paleidimo iš naujo reikia dar kartą įvesti PostgreSQL prisijungimo duomenis</string>
@@ -370,17 +338,6 @@
     <string name="error_unsupported_image">Nepalaikomas paveikslėlio tipas</string>
     <string name="error_unsupported_value">Nepalaikomas raktui priskirtas reikšmės tipas</string>
     <string name="error_workspace_access_denied">Neturite prieigos prie šios darbo srities</string>
-    <string name="error_xrechnung_business_c_c">Įmonės šalies kodas yra privalomas XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_business_email">Įmonės el. pašto adresas yra privalomas XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_business_phone">Įmonės telefono numeris yra privalomas XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_business_schema">Įmonės ID ir ID schema yra privalomi XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_business_v_a_t_code">Įmonės PVM mokėtojo kodas arba mokesčių mokėtojo kodas yra privalomas XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_client_address">Kliento adresas yra privalomas XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_client_c_c">Kliento šalies kodas yra privalomas XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_client_reference">„Leitweg-ID“ (pirkėjo nuoroda) yra privaloma XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_client_schema">Kliento ID ir ID schema yra privalomi XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_due_date">Mokėjimo terminas yra privalomas XRechnung atitinkančioms sąskaitoms</string>
-    <string name="error_xrechnung_not_supported">Sąskaita nepalaikoma UBL 2.1 XML formatu, atitinkančiu XRechnung 3.0</string>
     <string name="invoices_add_discount">Pridėti nuolaidą</string>
     <string name="invoices_add_invoice">Pridėti sąskaitą</string>
     <string name="invoices_add_bill_to">Pridėti gavėją</string>
@@ -464,8 +421,6 @@
     <string name="items_filter_all_text">Visos prekės</string>
     <string name="items_filter_archived_desc">Elementai, kurie buvo archyvuoti</string>
     <string name="items_filter_archived_text">Archyvuoti elementai</string>
-    <string name="items_filter_atleast_one_invoice_desc">Prekės, kurioms yra bent viena sąskaita</string>
-    <string name="items_filter_atleast_one_invoice_text">Prekės su sąskaitomis</string>
     <string name="items_filter_no_invoices30_desc">Nėra sąskaitų per pastarąsias 30 dienų</string>
     <string name="items_filter_no_invoices30_text">Neaktyvios prekės (30 dienų)</string>
     <string name="items_filter_no_invoices60_desc">Nėra sąskaitų per pastarąsias 60 dienų</string>
@@ -496,8 +451,6 @@
     <string name="layouts_filter_all_text">Visos maketuotės</string>
     <string name="layouts_filter_archived_desc">Archyvuotos maketuotės</string>
     <string name="layouts_filter_archived_text">Archyvuotos maketuotės</string>
-    <string name="layouts_filter_atleast_one_invoice_desc">Maketuotės, turinčios bent vieną sąskaitą</string>
-    <string name="layouts_filter_atleast_one_invoice_text">Maketuotės su sąskaitomis</string>
     <string name="layouts_filter_no_invoices30_desc">Sąskaitų nebuvo per pastarąsias 30 dienų</string>
     <string name="layouts_filter_no_invoices30_text">Neaktyvios maketuotės (30 dienų)</string>
     <string name="layouts_filter_no_invoices60_desc">Sąskaitų nebuvo per pastarąsias 60 dienų</string>
@@ -629,7 +582,6 @@
     <string name="reports_total_invoices">%s sąskaitos</string>
     <string name="settings_menu_items_descriptions_about">Sužinokite daugiau apie šią programą, jos funkcijas.</string>
     <string name="settings_menu_items_descriptions_buy_me_coffee">Paremkite projektą vienkartine kavos dovana.</string>
-    <string name="settings_menu_items_descriptions_customize_invoice">Sąskaitos numerio priešdėlis (pvz.: INV), priesagas.</string>
     <string name="settings_menu_items_descriptions_dark_mode">Perjunkite tarp šviesios ir tamsios temų.</string>
     <string name="settings_menu_items_descriptions_export">Eksportuokite savo duomenis atsarginei kopijai arba naudoti kitose programose.</string>
     <string name="settings_menu_items_descriptions_github_sponsors">Paremkite Invoice Builder ir padėkite auginti programą per GitHub Sponsors.</string>
@@ -643,7 +595,6 @@
     <string name="settings_menu_items_descriptions_turn_receipt_printing">Įjungti arba išjungti kvitų spausdinimo funkciją</string>
     <string name="settings_menu_items_descriptions_turn_reports">Įjunkti arba išjungti ataskaitų teikimo funkciją</string>
     <string name="settings_menu_items_descriptions_turn_style_profiles">Įjungti arba išjungti stiliaus profilių funkciją</string>
-    <string name="settings_menu_items_descriptions_turn_u_b_l">Įjunkti sąskaitų eksportą UBL 2.1 XML formatu, atitinkančiu PEPPOL BIS Billing 3.0</string>
     <string name="settings_menu_items_descriptions_turn_x_rechnung">Įjungti sąskaitų eksportavimą UBL 2.1 XML formatu, atitinkančiu Vokietijos XRechnung 3.0 standartą</string>
     <string name="settings_menu_items_descriptions_tutorial">Peržiūrėkite gidą, kaip naudotis programa</string>
     <string name="settings_menu_items_descriptions_wall_of_fame">Peržiūrėkite rėmėjus, kurie prisidėjo prie programėlės kūrimo</string>
@@ -651,7 +602,6 @@
     <string name="settings_menu_items_titles_about">Apie</string>
     <string name="settings_menu_items_titles_buy_me_coffee">Nupirk man kavos</string>
     <string name="settings_menu_items_titles_check_for_update">Tikrinti atnaujinimus</string>
-    <string name="settings_menu_items_titles_customize_invoice">Valdykite sąskaitą</string>
     <string name="settings_menu_items_titles_dark_mode">Tamsus režimas</string>
     <string name="settings_menu_items_titles_export">Eksportuoti</string>
     <string name="settings_menu_items_titles_github_sponsors">GitHub Sponsors</string>
@@ -665,7 +615,6 @@
     <string name="settings_menu_items_titles_turn_receipt_printing">Kvitų spausdinimas</string>
     <string name="settings_menu_items_titles_turn_reports">Ataskaitos</string>
     <string name="settings_menu_items_titles_turn_style_profiles">Stiliaus profiliai</string>
-    <string name="settings_menu_items_titles_turn_u_b_l">UBL 2.1 (PEPPOL BIS Billing 3.0)</string>
     <string name="settings_menu_items_titles_turn_x_rechnung">XRechnung (UBL 2.1)</string>
     <string name="settings_menu_items_titles_tutorial">Instrukcija</string>
     <string name="settings_menu_items_titles_wall_of_fame">Garbės siena</string>
@@ -677,8 +626,6 @@
     <string name="style_profiles_filter_all_text">Visi stiliaus profiliai</string>
     <string name="style_profiles_filter_archived_desc">Archyvuoti stiliaus profiliai</string>
     <string name="style_profiles_filter_archived_text">Archyvuoti stiliaus profiliai</string>
-    <string name="style_profiles_filter_atleast_one_invoice_desc">Stiliaus profiliai, turintys bent vieną sąskaitą</string>
-    <string name="style_profiles_filter_atleast_one_invoice_text">Stiliaus profiliai su sąskaitomis</string>
     <string name="style_profiles_filter_no_invoices30_desc">Nėra sąskaitų per paskutines 30 dienų</string>
     <string name="style_profiles_filter_no_invoices30_text">Neaktyvūs stiliaus profiliai (30 dienų)</string>
     <string name="style_profiles_filter_no_invoices60_desc">Nėra sąskaitų per paskutines 60 dienų</string>
@@ -695,8 +642,6 @@
     <string name="units_filter_all_text">Visi vienetai</string>
     <string name="units_filter_archived_desc">Vienetai, kurie buvo archyvuoti</string>
     <string name="units_filter_archived_text">Archyvuoti vienetai</string>
-    <string name="units_filter_atleast_one_invoice_desc">Vienetai, kurie turi bent vieną sąskaitą</string>
-    <string name="units_filter_atleast_one_invoice_text">Vienetai su sąskaitomis</string>
     <string name="units_filter_no_invoices30_desc">Nėra sąskaitų per pastarąsias 30 dienų</string>
     <string name="units_filter_no_invoices30_text">Neaktyvūs vienetai (30 dienų)</string>
     <string name="units_filter_no_invoices60_desc">Nėra sąskaitų per pastarąsias 60 dienų</string>

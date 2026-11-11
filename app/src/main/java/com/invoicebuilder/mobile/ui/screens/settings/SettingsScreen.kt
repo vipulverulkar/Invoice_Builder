@@ -169,20 +169,20 @@ fun SettingsScreen(
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            "E-Invoicing (PEPPOL / XRechnung)",
+                            "GST Registration & E-Invoice",
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.SemiBold
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            "Attach UBL 2.1 XML into generated invoice PDFs",
+                            "Issue GST tax invoices and capture IRN / QR for e-invoicing",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                     Switch(
-                        checked = settings.ublON,
-                        onCheckedChange = { viewModel.toggleEInvoice(it) }
+                        checked = settings.gstRegistrationOn,
+                        onCheckedChange = { viewModel.toggleGstRegistration(it) }
                     )
                 }
             }

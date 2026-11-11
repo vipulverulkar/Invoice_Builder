@@ -9,6 +9,7 @@ java {
 
 dependencies {
     implementation(project(":core:model"))
+    implementation(project(":core:common"))
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.truth)
     testRuntimeOnly(libs.junit.platform.launcher)

@@ -49,9 +49,10 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
+    implementation(project(":core:common"))
     implementation(project(":core:calculator"))
     implementation(project(":core:database"))
-    implementation(project(":core:einvoice"))
+    implementation(project(":core:gstn"))
     implementation(project(":core:pdf"))
 
     // Room

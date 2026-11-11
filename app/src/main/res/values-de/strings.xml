@@ -33,8 +33,6 @@
     <string name="banks_filter_all_text">Alle Banken</string>
     <string name="banks_filter_archived_desc">Banken, die archiviert wurden</string>
     <string name="banks_filter_archived_text">Archivierte Banken</string>
-    <string name="banks_filter_atleast_one_invoice_desc">Banken mit mindestens einer Rechnung</string>
-    <string name="banks_filter_atleast_one_invoice_text">Banken mit Rechnungen</string>
     <string name="banks_filter_no_invoices30_desc">Keine Rechnungen in den letzten 30 Tagen</string>
     <string name="banks_filter_no_invoices30_text">Inaktive Banken (30 Tage)</string>
     <string name="banks_filter_no_invoices60_desc">Keine Rechnungen in den letzten 60 Tagen</string>
@@ -50,8 +48,6 @@
     <string name="businesses_filter_all_text">Alle Unternehmen</string>
     <string name="businesses_filter_archived_desc">Unternehmen, die archiviert wurden</string>
     <string name="businesses_filter_archived_text">Archivierte Unternehmen</string>
-    <string name="businesses_filter_atleast_one_invoice_desc">Unternehmen mit mindestens einer Rechnung</string>
-    <string name="businesses_filter_atleast_one_invoice_text">Unternehmen mit Rechnungen</string>
     <string name="businesses_filter_no_invoices30_desc">Keine Rechnungen in den letzten 30 Tagen</string>
     <string name="businesses_filter_no_invoices30_text">Inaktive Unternehmen (30 Tage)</string>
     <string name="businesses_filter_no_invoices60_desc">Keine Rechnungen in den letzten 60 Tagen</string>
@@ -70,8 +66,6 @@
     <string name="categories_filter_all_text">Alle Kategorien</string>
     <string name="categories_filter_archived_desc">Kategorien, die archiviert wurden</string>
     <string name="categories_filter_archived_text">Archivierte Kategorien</string>
-    <string name="categories_filter_atleast_one_invoice_desc">Kategorien mit mindestens einer Rechnung</string>
-    <string name="categories_filter_atleast_one_invoice_text">Kategorien mit Rechnungen</string>
     <string name="categories_filter_no_invoices30_desc">Keine Rechnungen in den letzten 30 Tagen</string>
     <string name="categories_filter_no_invoices30_text">Inaktive Kategorien (30 Tage)</string>
     <string name="categories_filter_no_invoices60_desc">Keine Rechnungen in den letzten 60 Tagen</string>
@@ -87,8 +81,6 @@
     <string name="clients_filter_all_text">Alle Kunden</string>
     <string name="clients_filter_archived_desc">Kunden, die archiviert wurden</string>
     <string name="clients_filter_archived_text">Archivierte Kunden</string>
-    <string name="clients_filter_atleast_one_invoice_desc">Kunden mit mindestens einer Rechnung</string>
-    <string name="clients_filter_atleast_one_invoice_text">Kunden mit Rechnungen</string>
     <string name="clients_filter_no_invoices30_desc">Keine Rechnungen in den letzten 30 Tagen</string>
     <string name="clients_filter_no_invoices30_text">Inaktive Kunden (30 Tage)</string>
     <string name="clients_filter_no_invoices60_desc">Keine Rechnungen in den letzten 60 Tagen</string>
@@ -117,7 +109,6 @@
     <string name="common_branch_code_invalid">Der Filialcode muss 3–6 alphanumerische Zeichen enthalten</string>
     <string name="common_branding">Markenauftritt</string>
     <string name="common_buyer_reference">Kundenreferenz</string>
-    <string name="common_buyer_reference_u_b_l">Geben Sie die Referenz des Kunden oder den Abteilungscode ein (z. B. für das Peppol-Routing)</string>
     <string name="common_buyer_reference_x_rechnung">Geben Sie die obligatorische Leitweg-ID der deutschen Behörde ein (z. B. 991-01234-56)</string>
     <string name="common_cancel">Abbrechen</string>
     <string name="common_cash">Bargeld</string>
@@ -152,8 +143,6 @@
     <string name="common_email">E-Mail</string>
     <string name="common_export">Exportieren</string>
     <string name="common_export_p_d_f">PDF exportieren</string>
-    <string name="common_export_p_d_f_embedded_u_b_l">PDF exportieren (mit eingebettetem UBL)</string>
-    <string name="common_export_u_b_l_x_m_l">UBL‑XML exportieren</string>
     <string name="common_export_x_rechnung_x_m_l">XRechnung-XML exportieren</string>
     <string name="common_exported">Exportiert</string>
     <string name="common_exported_to">Exportiert nach %s</string>
@@ -168,8 +157,6 @@
     <string name="common_invalid_country_code">Ungültiger Ländercode</string>
     <string name="common_invalid_email">Ungültiges E-Mail-Format</string>
     <string name="common_invalid_form">Formular ist ungültig. Bitte füllen Sie die erforderlichen Felder aus</string>
-    <string name="common_invalid_peppol_endpoint_id">Ungültige PEPPOL-Endpunkt-ID</string>
-    <string name="common_invalid_peppol_endpoint_scheme_id">Ungültiges PEPPOL-Endpunktschema</string>
     <string name="common_invalid_phone">Ungültiges Telefonnummernformat</string>
     <string name="common_invoice">Rechnung</string>
     <string name="common_invoice_no">Rechnungsnr.</string>
@@ -190,7 +177,6 @@
     <string name="common_light">Hell</string>
     <string name="common_logo_size_style">Logogröße</string>
     <string name="common_logout_confirm">Sie werden abgemeldet und zur Datenbankauswahl zurückgeführt. Fortfahren?</string>
-    <string name="common_make_invoice">Rechnung erstellen</string>
     <string name="common_medium">Mittel</string>
     <string name="common_modern">Modern</string>
     <string name="common_name">Name</string>
@@ -208,10 +194,6 @@
     <string name="common_payment_info">Zahlungsinformationen</string>
     <string name="common_payment_info_legacy">Dies sind veraltete Zahlungsinformationen. Neue Zahlungsdetails sollten im Bereich „Bank“ festgelegt werden.</string>
     <string name="common_paypal">PayPal</string>
-    <string name="common_peppol_endpoint_id">PEPPOL-Endpunkt-ID</string>
-    <string name="common_peppol_endpoint_id_helper">Teilnehmer-/Endpunktkennung</string>
-    <string name="common_peppol_endpoint_scheme_id">PEPPOL-Endpunktschema</string>
-    <string name="common_peppol_endpoint_scheme_id_helper">Numerische/alphabetische Schema-Kennung</string>
     <string name="common_phone">Telefon</string>
     <string name="common_phone_helper">Telefonnummer im internationalen Format eingeben</string>
     <string name="common_port">Port</string>
@@ -282,8 +264,6 @@
     <string name="currencies_filter_all_text">Alle Währungen</string>
     <string name="currencies_filter_archived_desc">Währungen, die archiviert wurden</string>
     <string name="currencies_filter_archived_text">Archivierte Währungen</string>
-    <string name="currencies_filter_atleast_one_invoice_desc">Währungen mit mindestens einer Rechnung</string>
-    <string name="currencies_filter_atleast_one_invoice_text">Währungen mit Rechnungen</string>
     <string name="currencies_filter_no_invoices30_desc">Keine Rechnungen in den letzten 30 Tagen</string>
     <string name="currencies_filter_no_invoices30_text">Inaktive Währungen (30 Tage)</string>
     <string name="currencies_filter_no_invoices60_desc">Keine Rechnungen in den letzten 60 Tagen</string>
@@ -296,10 +276,6 @@
     <string name="currencies_no_item">Währung auswählen, um Details anzuzeigen.</string>
     <string name="currencies_subunit">Untereinheit</string>
     <string name="currencies_symbol">Symbol</string>
-    <string name="customize_invoice_include_business_name">Firmenname einbeziehen</string>
-    <string name="customize_invoice_include_month">Monat einbeziehen</string>
-    <string name="customize_invoice_include_year">Jahr einbeziehen</string>
-    <string name="customize_invoice_letters_and_numbers">Nur Buchstaben und Zahlen erlaubt</string>
     <string name="database_chooser_connect">Mit Datenbank verbinden</string>
     <string name="database_chooser_create_new">Neue Datenbank erstellen</string>
     <string name="database_chooser_description">Wählen Sie eine vorhandene Datenbank oder erstellen Sie eine neue. Sie können häufig verwendete Datenbanken für schnellen Zugriff speichern.</string>
@@ -348,14 +324,6 @@
     <string name="error_no_printer_available">Kein Drucker verfügbar. Bitte schließen Sie einen Drucker an und versuchen Sie es erneut.</string>
     <string name="error_no_up_function">Migration exportiert kein up()</string>
     <string name="error_no_worksheet_found">Kein Arbeitsblatt gefunden</string>
-    <string name="error_peppol_business_c_c">Business-Ländercode ist für PEPPOL-konforme Rechnungen erforderlich</string>
-    <string name="error_peppol_business_schema">Business Peppol Endpoint-ID und Schema-ID sind für PEPPOL-konforme Rechnungen erforderlich</string>
-    <string name="error_peppol_business_v_a_t_code">Business-Mehrwertsteuernummer oder Code ist für PEPPOL-konforme Rechnungen erforderlich</string>
-    <string name="error_peppol_client_c_c">Client-Ländercode ist für PEPPOL-konforme Rechnungen erforderlich</string>
-    <string name="error_peppol_client_reference">Client-Buyer-Reference ist für PEPPOL-konforme Rechnungen erforderlich</string>
-    <string name="error_peppol_client_schema">Client Peppol Endpoint-ID und Schema-ID sind für PEPPOL-konforme Rechnungen erforderlich</string>
-    <string name="error_peppol_due_date">Fälligkeitsdatum ist für PEPPOL-konforme Rechnungen erforderlich</string>
-    <string name="error_peppol_not_supported">Rechnung wird für UBL 2.1 XML mit PEPPOL BIS Billing 3.0 nicht unterstützt</string>
     <string name="error_postgres_config">Postgres-Konfiguration erforderlich</string>
     <string name="error_postgres_conflict_target">Postgres erfordert ein Konfliktziel für die Tabelle</string>
     <string name="error_postgres_credentials_required">PostgreSQL-Anmeldedaten werden nach dem Neustart erneut benötigt</string>
@@ -370,17 +338,6 @@
     <string name="error_unsupported_image">Nicht unterstützter Bildtyp</string>
     <string name="error_unsupported_value">Nicht unterstützter Werttyp für den Schlüssel</string>
     <string name="error_workspace_access_denied">Sie haben keinen Zugriff auf diesen Arbeitsbereich</string>
-    <string name="error_xrechnung_business_c_c">Der Ländercode des Unternehmens ist für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_business_email">Die E-Mail-Adresse des Unternehmens ist für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_business_phone">Die Telefonnummer des Unternehmens ist für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_business_schema">Unternehmens-ID und ID-Schema sind für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_business_v_a_t_code">Umsatzsteuer-ID oder Steuernummer des Unternehmens ist für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_client_address">Die Adresse des Kunden ist für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_client_c_c">Der Ländercode des Kunden ist für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_client_reference">Die Leitweg-ID (Käuferreferenz) ist für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_client_schema">Kunden-ID und ID-Schema sind für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_due_date">Das Fälligkeitsdatum ist für XRechnung-konforme Rechnungen erforderlich</string>
-    <string name="error_xrechnung_not_supported">Die Rechnung wird für UBL 2.1 XML konform mit XRechnung 3.0 nicht unterstützt</string>
     <string name="invoices_add_discount">Rabatt hinzufügen</string>
     <string name="invoices_add_invoice">Rechnung hinzufügen</string>
     <string name="invoices_add_bill_to">Rechnungsempfänger hinzufügen</string>
@@ -464,8 +421,6 @@
     <string name="items_filter_all_text">Alle Artikel</string>
     <string name="items_filter_archived_desc">Artikel, die archiviert wurden</string>
     <string name="items_filter_archived_text">Archivierte Artikel</string>
-    <string name="items_filter_atleast_one_invoice_desc">Artikel mit mindestens einer Rechnung</string>
-    <string name="items_filter_atleast_one_invoice_text">Artikel mit Rechnungen</string>
     <string name="items_filter_no_invoices30_desc">Keine Rechnungen in den letzten 30 Tagen</string>
     <string name="items_filter_no_invoices30_text">Inaktive Artikel (30 Tage)</string>
     <string name="items_filter_no_invoices60_desc">Keine Rechnungen in den letzten 60 Tagen</string>
@@ -496,8 +451,6 @@
     <string name="layouts_filter_all_text">Alle Layouts</string>
     <string name="layouts_filter_archived_desc">Layouts, die archiviert wurden</string>
     <string name="layouts_filter_archived_text">Archivierte Layouts</string>
-    <string name="layouts_filter_atleast_one_invoice_desc">Layouts mit mindestens einer Rechnung</string>
-    <string name="layouts_filter_atleast_one_invoice_text">Layouts mit Rechnungen</string>
     <string name="layouts_filter_no_invoices30_desc">Keine Rechnungen in den letzten 30 Tagen</string>
     <string name="layouts_filter_no_invoices30_text">Inaktive Layouts (30 Tage)</string>
     <string name="layouts_filter_no_invoices60_desc">Keine Rechnungen in den letzten 60 Tagen</string>
@@ -629,7 +582,6 @@
     <string name="reports_total_invoices">%s Rechnungen</string>
     <string name="settings_menu_items_descriptions_about">Erfahren Sie mehr über diese App und ihre Funktionen.</string>
     <string name="settings_menu_items_descriptions_buy_me_coffee">Unterstützen Sie das Projekt mit einer Spende für einen Kaffee.</string>
-    <string name="settings_menu_items_descriptions_customize_invoice">Rechnungsnummer-Präfix z.B.: INV, Suffix.</string>
     <string name="settings_menu_items_descriptions_dark_mode">Zwischen hellem und dunklem Design wechseln.</string>
     <string name="settings_menu_items_descriptions_export">Exportieren Sie Ihre Daten zur Sicherung oder zur Verwendung in anderen Anwendungen.</string>
     <string name="settings_menu_items_descriptions_github_sponsors">Unterstützen Sie Invoice Builder und helfen Sie dabei, die App über GitHub Sponsors weiterzuentwickeln.</string>
@@ -643,7 +595,6 @@
     <string name="settings_menu_items_descriptions_turn_receipt_printing">Druckfunktion für Belege aktivieren oder deaktivieren</string>
     <string name="settings_menu_items_descriptions_turn_reports">Berichtsfunktion aktivieren oder deaktivieren</string>
     <string name="settings_menu_items_descriptions_turn_style_profiles">Style-Profil-Funktion aktivieren oder deaktivieren</string>
-    <string name="settings_menu_items_descriptions_turn_u_b_l">Export von Rechnungen im UBL 2.1 XML-Format aktivieren, konform mit PEPPOL BIS Billing 3.0</string>
     <string name="settings_menu_items_descriptions_turn_x_rechnung">Aktivieren Sie den Export von Rechnungen im UBL 2.1 XML-Format gemäß dem deutschen XRechnung 3.0-Standard</string>
     <string name="settings_menu_items_descriptions_tutorial">Anleitung zur Verwendung der Anwendung ansehen</string>
     <string name="settings_menu_items_descriptions_wall_of_fame">Sehen Sie die Unterstützer, die zur Entwicklung der App beigetragen haben</string>
@@ -651,7 +602,6 @@
     <string name="settings_menu_items_titles_about">Über</string>
     <string name="settings_menu_items_titles_buy_me_coffee">Kauf mir einen Kaffee</string>
     <string name="settings_menu_items_titles_check_for_update">Nach Updates suchen</string>
-    <string name="settings_menu_items_titles_customize_invoice">Rechnung anpassen</string>
     <string name="settings_menu_items_titles_dark_mode">Dunkelmodus</string>
     <string name="settings_menu_items_titles_export">Exportieren</string>
     <string name="settings_menu_items_titles_github_sponsors">GitHub Sponsors</string>
@@ -665,7 +615,6 @@
     <string name="settings_menu_items_titles_turn_receipt_printing">Belegdruck</string>
     <string name="settings_menu_items_titles_turn_reports">Berichte</string>
     <string name="settings_menu_items_titles_turn_style_profiles">Stilprofile</string>
-    <string name="settings_menu_items_titles_turn_u_b_l">UBL 2.1 (PEPPOL BIS Billing 3.0)</string>
     <string name="settings_menu_items_titles_turn_x_rechnung">XRechnung (UBL 2.1)</string>
     <string name="settings_menu_items_titles_tutorial">Anleitung</string>
     <string name="settings_menu_items_titles_wall_of_fame">Ruhmeshalle</string>
@@ -677,8 +626,6 @@
     <string name="style_profiles_filter_all_text">Alle Stilprofile</string>
     <string name="style_profiles_filter_archived_desc">Archivierte Stilprofile</string>
     <string name="style_profiles_filter_archived_text">Archivierte Stilprofile</string>
-    <string name="style_profiles_filter_atleast_one_invoice_desc">Stilprofile mit mindestens einer Rechnung</string>
-    <string name="style_profiles_filter_atleast_one_invoice_text">Stilprofile mit Rechnungen</string>
     <string name="style_profiles_filter_no_invoices30_desc">Keine Rechnungen in den letzten 30 Tagen</string>
     <string name="style_profiles_filter_no_invoices30_text">Inaktive Stilprofile (30 Tage)</string>
     <string name="style_profiles_filter_no_invoices60_desc">Keine Rechnungen in den letzten 60 Tagen</string>
@@ -695,8 +642,6 @@
     <string name="units_filter_all_text">Alle Einheiten</string>
     <string name="units_filter_archived_desc">Einheiten, die archiviert wurden</string>
     <string name="units_filter_archived_text">Archivierte Einheiten</string>
-    <string name="units_filter_atleast_one_invoice_desc">Einheiten mit mindestens einer Rechnung</string>
-    <string name="units_filter_atleast_one_invoice_text">Einheiten mit Rechnungen</string>
     <string name="units_filter_no_invoices30_desc">Keine Rechnungen in den letzten 30 Tagen</string>
     <string name="units_filter_no_invoices30_text">Inaktive Einheiten (30 Tage)</string>
     <string name="units_filter_no_invoices60_desc">Keine Rechnungen in den letzten 60 Tagen</string>

@@ -19,9 +19,21 @@ data class SettingsEntity(
     val reportsON: Boolean = true,
     val styleProfilesON: Boolean = true,
     val presetsON: Boolean = true,
+    // Legacy European e-invoice flags, retained so the schema stays stable.
+    // Unused by the India-only build.
     val ublON: Boolean = true,
     val xrechnungON: Boolean = true,
     val receiptPrintingOn: Boolean = true,
+    // Indian GST preferences
+    val financialYear: String? = null,
+    val defaultStateCode: String? = null,
+    @ColumnInfo(defaultValue = "0") val gstRegistrationOn: Boolean = false,
+    @ColumnInfo(defaultValue = "1") val roundOffEnabled: Boolean = true,
+    val defaultInvoiceKind: String? = null,
+    val gstnClientId: String? = null,
+    val gstnClientSecret: String? = null,
+    val gstnGstin: String? = null,
+    val gstnEnvironment: String? = null,
     val createdAt: String? = null,
     val updatedAt: String? = null
 )
@@ -48,6 +60,12 @@ data class BusinessEntity(
     val countryCode: String? = null,
     val peppolEndpointSchemeId: String? = null,
     val description: String? = null,
+    // Indian GST master data
+    val gstin: String? = null,
+    val pan: String? = null,
+    val stateCode: String? = null,
+    val registrationType: String? = null,
+    val declaration: String? = null,
     val isArchived: Boolean = false,
     val createdAt: String? = null,
     val updatedAt: String? = null
@@ -69,6 +87,13 @@ data class ClientEntity(
     val peppolEndpointSchemeId: String? = null,
     val buyerReference: String? = null,
     val description: String? = null,
+    // Indian GST master data
+    val gstin: String? = null,
+    val tradeName: String? = null,
+    val stateCode: String? = null,
+    val tdsSection: String? = null,
+    @ColumnInfo(defaultValue = "0.0") val tdsRate: Double = 0.0,
+    @ColumnInfo(defaultValue = "0") val tcsApplicable: Boolean = false,
     val isArchived: Boolean = false,
     val createdAt: String? = null,
     val updatedAt: String? = null
@@ -120,6 +145,11 @@ data class ItemEntity(
     val unitId: Long? = null,
     val categoryId: Long? = null,
     val description: String? = null,
+    // Indian GST master data
+    val hsnCode: String? = null,
+    @ColumnInfo(defaultValue = "0.0") val gstRate: Double = 0.0,
+    val unitCode: String? = null,
+    val itemType: String? = null,
     val isArchived: Boolean = false,
     val createdAt: String? = null,
     val updatedAt: String? = null
@@ -179,6 +209,9 @@ data class BankEntity(
     val upiCode: String? = null,
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB) val qrCode: ByteArray? = null,
     val accountHolder: String? = null,
+    // Indian banking details
+    val ifscCode: String? = null,
+    val upiId: String? = null,
     val sortOrder: String? = null,
     val isArchived: Boolean = false,
     val createdAt: String? = null,
@@ -268,6 +301,22 @@ data class InvoiceEntity(
     val signatureName: String? = null,
     val styleProfilesId: Long? = null,
     val language: String = "en",
+    // Indian GST compliance fields
+    val invoiceKind: String? = null,
+    val placeOfSupply: String? = null,
+    @ColumnInfo(defaultValue = "0") val reverseCharge: Boolean = false,
+    @ColumnInfo(defaultValue = "'0'") val roundOffCents: String = "0",
+    val amountInWords: String? = null,
+    val tdsSection: String? = null,
+    @ColumnInfo(defaultValue = "'0'") val tdsAmountCents: String = "0",
+    val tcsSection: String? = null,
+    @ColumnInfo(defaultValue = "'0'") val tcsAmountCents: String = "0",
+    @ColumnInfo(defaultValue = "'0'") val totalCents: String = "0",
+    val irn: String? = null,
+    val ackNumber: String? = null,
+    val ackDate: String? = null,
+    val ewbNumber: String? = null,
+    val ewbDate: String? = null,
     val createdAt: String? = null,
     val updatedAt: String? = null
 )
@@ -288,6 +337,15 @@ data class InvoiceItemEntity(
     val quantity: String = "1",
     val taxRate: Double = 0.0,
     val taxType: InvoiceItemTaxType? = null,
+    // Immutable snapshots so catalogue edits never rewrite issued invoices
+    val itemName: String? = null,
+    @ColumnInfo(defaultValue = "'0'") val unitPriceCents: String = "0",
+    val hsnCode: String? = null,
+    @ColumnInfo(defaultValue = "0.0") val gstRate: Double = 0.0,
+    val discountType: String? = null,
+    @ColumnInfo(defaultValue = "'0'") val discountAmountCents: String = "0",
+    val unitCode: String? = null,
+    @ColumnInfo(defaultValue = "'0'") val lineTotalCents: String = "0",
     val createdAt: String? = null,
     val updatedAt: String? = null
 )
@@ -317,6 +375,7 @@ data class InvoiceSequenceEntity(
     val clientId: Long,
     val nextSequence: Long,
     val invoiceType: InvoiceType = InvoiceType.invoice,
+    val financialYear: String? = null,
     val createdAt: String? = null,
     val updatedAt: String? = null
 )

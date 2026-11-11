@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 java {
@@ -10,9 +11,11 @@ java {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:calculator"))
+    implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.truth)
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 tasks.test {

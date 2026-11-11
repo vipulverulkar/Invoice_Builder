@@ -1,0 +1,2548 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "24b750a13c71a6e3263f605adfba87d6",
+    "entities": [
+      {
+        "tableName": "settings",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `language` TEXT NOT NULL, `amountFormat` TEXT NOT NULL, `dateFormat` TEXT NOT NULL, `isDarkMode` INTEGER NOT NULL, `invoicePrefix` TEXT, `invoiceSuffix` TEXT, `shouldIncludeYear` INTEGER NOT NULL, `shouldIncludeMonth` INTEGER NOT NULL, `shouldIncludeBusinessName` INTEGER NOT NULL, `quotesON` INTEGER NOT NULL, `reportsON` INTEGER NOT NULL, `styleProfilesON` INTEGER NOT NULL, `presetsON` INTEGER NOT NULL, `ublON` INTEGER NOT NULL, `xrechnungON` INTEGER NOT NULL, `receiptPrintingOn` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "language",
+            "columnName": "language",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amountFormat",
+            "columnName": "amountFormat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateFormat",
+            "columnName": "dateFormat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDarkMode",
+            "columnName": "isDarkMode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invoicePrefix",
+            "columnName": "invoicePrefix",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "invoiceSuffix",
+            "columnName": "invoiceSuffix",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "shouldIncludeYear",
+            "columnName": "shouldIncludeYear",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shouldIncludeMonth",
+            "columnName": "shouldIncludeMonth",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shouldIncludeBusinessName",
+            "columnName": "shouldIncludeBusinessName",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quotesON",
+            "columnName": "quotesON",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reportsON",
+            "columnName": "reportsON",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "styleProfilesON",
+            "columnName": "styleProfilesON",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "presetsON",
+            "columnName": "presetsON",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ublON",
+            "columnName": "ublON",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "xrechnungON",
+            "columnName": "xrechnungON",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "receiptPrintingOn",
+            "columnName": "receiptPrintingOn",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "businesses",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `shortName` TEXT NOT NULL, `address` TEXT, `role` TEXT, `email` TEXT, `phone` TEXT, `website` TEXT, `additional` TEXT, `paymentInformation` TEXT, `logo` BLOB, `fileSize` INTEGER, `fileType` TEXT, `fileName` TEXT, `vatCode` TEXT, `code` TEXT, `peppolEndpointId` TEXT, `countryCode` TEXT, `peppolEndpointSchemeId` TEXT, `description` TEXT, `isArchived` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shortName",
+            "columnName": "shortName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "role",
+            "columnName": "role",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "phone",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "website",
+            "columnName": "website",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "additional",
+            "columnName": "additional",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "paymentInformation",
+            "columnName": "paymentInformation",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "logo",
+            "columnName": "logo",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "fileSize",
+            "columnName": "fileSize",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "fileType",
+            "columnName": "fileType",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "fileName",
+            "columnName": "fileName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "vatCode",
+            "columnName": "vatCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "peppolEndpointId",
+            "columnName": "peppolEndpointId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "countryCode",
+            "columnName": "countryCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "peppolEndpointSchemeId",
+            "columnName": "peppolEndpointSchemeId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "clients",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `shortName` TEXT NOT NULL, `address` TEXT, `email` TEXT, `phone` TEXT, `code` TEXT, `additional` TEXT, `vatCode` TEXT, `peppolEndpointId` TEXT, `countryCode` TEXT, `peppolEndpointSchemeId` TEXT, `buyerReference` TEXT, `description` TEXT, `isArchived` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shortName",
+            "columnName": "shortName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "phone",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "additional",
+            "columnName": "additional",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "vatCode",
+            "columnName": "vatCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "peppolEndpointId",
+            "columnName": "peppolEndpointId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "countryCode",
+            "columnName": "countryCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "peppolEndpointSchemeId",
+            "columnName": "peppolEndpointSchemeId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "buyerReference",
+            "columnName": "buyerReference",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "units",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `isArchived` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "categories",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `isArchived` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "currencies",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `code` TEXT NOT NULL, `symbol` TEXT NOT NULL, `text` TEXT NOT NULL, `format` TEXT NOT NULL, `subunit` INTEGER NOT NULL, `isArchived` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "symbol",
+            "columnName": "symbol",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "format",
+            "columnName": "format",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subunit",
+            "columnName": "subunit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "items",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `amount` TEXT NOT NULL, `unitId` INTEGER, `categoryId` INTEGER, `description` TEXT, `isArchived` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`unitId`) REFERENCES `units`(`id`) ON UPDATE NO ACTION ON DELETE SET NULL , FOREIGN KEY(`categoryId`) REFERENCES `categories`(`id`) ON UPDATE NO ACTION ON DELETE SET NULL )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unitId",
+            "columnName": "unitId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "categoryId",
+            "columnName": "categoryId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_items_unitId",
+            "unique": false,
+            "columnNames": [
+              "unitId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_items_unitId` ON `${TABLE_NAME}` (`unitId`)"
+          },
+          {
+            "name": "index_items_categoryId",
+            "unique": false,
+            "columnNames": [
+              "categoryId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_items_categoryId` ON `${TABLE_NAME}` (`categoryId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "units",
+            "onDelete": "SET NULL",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "unitId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "categories",
+            "onDelete": "SET NULL",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "categoryId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "layouts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `schema` TEXT NOT NULL, `isArchived` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "schema",
+            "columnName": "schema",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "style_profiles",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `isArchived` INTEGER NOT NULL, `color` TEXT, `logoSize` TEXT, `fontSize` TEXT, `fontFamily` TEXT, `pdfTexts` TEXT, `layoutId` INTEGER, `tableHeaderStyle` TEXT, `tableRowStyle` TEXT, `pageFormat` TEXT, `labelUpperCase` INTEGER NOT NULL, `showQuantity` INTEGER NOT NULL, `showUnit` INTEGER NOT NULL, `showRowNo` INTEGER NOT NULL, `fieldSortOrders` TEXT NOT NULL, `watermarkFileData` BLOB, `paidWatermarkFileData` BLOB, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`layoutId`) REFERENCES `layouts`(`id`) ON UPDATE NO ACTION ON DELETE SET NULL )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "color",
+            "columnName": "color",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "logoSize",
+            "columnName": "logoSize",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "fontSize",
+            "columnName": "fontSize",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "fontFamily",
+            "columnName": "fontFamily",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "pdfTexts",
+            "columnName": "pdfTexts",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "layoutId",
+            "columnName": "layoutId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "tableHeaderStyle",
+            "columnName": "tableHeaderStyle",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "tableRowStyle",
+            "columnName": "tableRowStyle",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "pageFormat",
+            "columnName": "pageFormat",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "labelUpperCase",
+            "columnName": "labelUpperCase",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showQuantity",
+            "columnName": "showQuantity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showUnit",
+            "columnName": "showUnit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showRowNo",
+            "columnName": "showRowNo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fieldSortOrders",
+            "columnName": "fieldSortOrders",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "watermarkFileData",
+            "columnName": "watermarkFileData",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "paidWatermarkFileData",
+            "columnName": "paidWatermarkFileData",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_style_profiles_layoutId",
+            "unique": false,
+            "columnNames": [
+              "layoutId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_style_profiles_layoutId` ON `${TABLE_NAME}` (`layoutId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "layouts",
+            "onDelete": "SET NULL",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "layoutId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "banks",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `bankName` TEXT, `accountNumber` TEXT, `swiftCode` TEXT, `address` TEXT, `branchCode` TEXT, `type` TEXT, `routingNumber` TEXT, `upiCode` TEXT, `qrCode` BLOB, `accountHolder` TEXT, `sortOrder` TEXT, `isArchived` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bankName",
+            "columnName": "bankName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "accountNumber",
+            "columnName": "accountNumber",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "swiftCode",
+            "columnName": "swiftCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "branchCode",
+            "columnName": "branchCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "routingNumber",
+            "columnName": "routingNumber",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "upiCode",
+            "columnName": "upiCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "qrCode",
+            "columnName": "qrCode",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "accountHolder",
+            "columnName": "accountHolder",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sortOrder",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "presets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `businessId` INTEGER, `clientId` INTEGER, `currencyId` INTEGER, `bankId` INTEGER, `customerNotes` TEXT, `thanksNotes` TEXT, `termsConditionNotes` TEXT, `language` TEXT, `signatureData` BLOB, `signatureName` TEXT, `styleProfilesId` INTEGER, `isArchived` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`styleProfilesId`) REFERENCES `style_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`businessId`) REFERENCES `businesses`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`clientId`) REFERENCES `clients`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`currencyId`) REFERENCES `currencies`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`bankId`) REFERENCES `banks`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessId",
+            "columnName": "businessId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "clientId",
+            "columnName": "clientId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "currencyId",
+            "columnName": "currencyId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "bankId",
+            "columnName": "bankId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "customerNotes",
+            "columnName": "customerNotes",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "thanksNotes",
+            "columnName": "thanksNotes",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "termsConditionNotes",
+            "columnName": "termsConditionNotes",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "language",
+            "columnName": "language",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "signatureData",
+            "columnName": "signatureData",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "signatureName",
+            "columnName": "signatureName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "styleProfilesId",
+            "columnName": "styleProfilesId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_presets_styleProfilesId",
+            "unique": false,
+            "columnNames": [
+              "styleProfilesId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_presets_styleProfilesId` ON `${TABLE_NAME}` (`styleProfilesId`)"
+          },
+          {
+            "name": "index_presets_businessId",
+            "unique": false,
+            "columnNames": [
+              "businessId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_presets_businessId` ON `${TABLE_NAME}` (`businessId`)"
+          },
+          {
+            "name": "index_presets_clientId",
+            "unique": false,
+            "columnNames": [
+              "clientId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_presets_clientId` ON `${TABLE_NAME}` (`clientId`)"
+          },
+          {
+            "name": "index_presets_currencyId",
+            "unique": false,
+            "columnNames": [
+              "currencyId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_presets_currencyId` ON `${TABLE_NAME}` (`currencyId`)"
+          },
+          {
+            "name": "index_presets_bankId",
+            "unique": false,
+            "columnNames": [
+              "bankId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_presets_bankId` ON `${TABLE_NAME}` (`bankId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "style_profiles",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "styleProfilesId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "businesses",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "businessId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "clients",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "clientId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "currencies",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "currencyId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "banks",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "bankId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoices",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `invoiceType` TEXT NOT NULL, `convertedFromQuotationId` INTEGER, `businessId` INTEGER NOT NULL, `clientId` INTEGER NOT NULL, `currencyId` INTEGER NOT NULL, `bankId` INTEGER, `layoutId` INTEGER, `invoiceNumber` TEXT NOT NULL, `invoicePrefix` TEXT, `invoiceSuffix` TEXT, `isArchived` INTEGER NOT NULL, `status` TEXT NOT NULL, `issuedAt` TEXT NOT NULL, `dueDate` TEXT, `paidAt` TEXT, `closedAt` TEXT, `customerNotes` TEXT, `thanksNotes` TEXT, `termsConditionNotes` TEXT, `discountName` TEXT, `discountType` TEXT, `discountAmountCents` TEXT NOT NULL, `discountPercent` REAL NOT NULL, `surchargeName` TEXT, `surchargeType` TEXT, `surchargeAmountCents` TEXT NOT NULL, `surchargePercent` REAL NOT NULL, `shippingFeeCents` TEXT NOT NULL, `taxName` TEXT, `taxRate` REAL NOT NULL, `taxType` TEXT, `signatureData` BLOB, `signatureName` TEXT, `styleProfilesId` INTEGER, `language` TEXT NOT NULL, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`businessId`) REFERENCES `businesses`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`clientId`) REFERENCES `clients`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`currencyId`) REFERENCES `currencies`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`bankId`) REFERENCES `banks`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`layoutId`) REFERENCES `layouts`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`styleProfilesId`) REFERENCES `style_profiles`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invoiceType",
+            "columnName": "invoiceType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "convertedFromQuotationId",
+            "columnName": "convertedFromQuotationId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "businessId",
+            "columnName": "businessId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "clientId",
+            "columnName": "clientId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencyId",
+            "columnName": "currencyId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bankId",
+            "columnName": "bankId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "layoutId",
+            "columnName": "layoutId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "invoiceNumber",
+            "columnName": "invoiceNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invoicePrefix",
+            "columnName": "invoicePrefix",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "invoiceSuffix",
+            "columnName": "invoiceSuffix",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "issuedAt",
+            "columnName": "issuedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dueDate",
+            "columnName": "dueDate",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "paidAt",
+            "columnName": "paidAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "closedAt",
+            "columnName": "closedAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "customerNotes",
+            "columnName": "customerNotes",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "thanksNotes",
+            "columnName": "thanksNotes",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "termsConditionNotes",
+            "columnName": "termsConditionNotes",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "discountName",
+            "columnName": "discountName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "discountType",
+            "columnName": "discountType",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "discountAmountCents",
+            "columnName": "discountAmountCents",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "discountPercent",
+            "columnName": "discountPercent",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "surchargeName",
+            "columnName": "surchargeName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "surchargeType",
+            "columnName": "surchargeType",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "surchargeAmountCents",
+            "columnName": "surchargeAmountCents",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "surchargePercent",
+            "columnName": "surchargePercent",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shippingFeeCents",
+            "columnName": "shippingFeeCents",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taxName",
+            "columnName": "taxName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "taxRate",
+            "columnName": "taxRate",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taxType",
+            "columnName": "taxType",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "signatureData",
+            "columnName": "signatureData",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "signatureName",
+            "columnName": "signatureName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "styleProfilesId",
+            "columnName": "styleProfilesId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "language",
+            "columnName": "language",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoices_businessId",
+            "unique": false,
+            "columnNames": [
+              "businessId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoices_businessId` ON `${TABLE_NAME}` (`businessId`)"
+          },
+          {
+            "name": "index_invoices_clientId",
+            "unique": false,
+            "columnNames": [
+              "clientId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoices_clientId` ON `${TABLE_NAME}` (`clientId`)"
+          },
+          {
+            "name": "index_invoices_currencyId",
+            "unique": false,
+            "columnNames": [
+              "currencyId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoices_currencyId` ON `${TABLE_NAME}` (`currencyId`)"
+          },
+          {
+            "name": "index_invoices_bankId",
+            "unique": false,
+            "columnNames": [
+              "bankId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoices_bankId` ON `${TABLE_NAME}` (`bankId`)"
+          },
+          {
+            "name": "index_invoices_layoutId",
+            "unique": false,
+            "columnNames": [
+              "layoutId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoices_layoutId` ON `${TABLE_NAME}` (`layoutId`)"
+          },
+          {
+            "name": "index_invoices_styleProfilesId",
+            "unique": false,
+            "columnNames": [
+              "styleProfilesId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoices_styleProfilesId` ON `${TABLE_NAME}` (`styleProfilesId`)"
+          },
+          {
+            "name": "index_invoices_businessId_invoiceNumber_clientId_invoiceType",
+            "unique": true,
+            "columnNames": [
+              "businessId",
+              "invoiceNumber",
+              "clientId",
+              "invoiceType"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_invoices_businessId_invoiceNumber_clientId_invoiceType` ON `${TABLE_NAME}` (`businessId`, `invoiceNumber`, `clientId`, `invoiceType`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "businesses",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "businessId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "clients",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "clientId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "currencies",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "currencyId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "banks",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "bankId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "layouts",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "layoutId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "style_profiles",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "styleProfilesId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_items",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceId` INTEGER NOT NULL, `itemId` INTEGER NOT NULL, `customField` TEXT, `quantity` TEXT NOT NULL, `taxRate` REAL NOT NULL, `taxType` TEXT, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`parentInvoiceId`) REFERENCES `invoices`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`itemId`) REFERENCES `items`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceId",
+            "columnName": "parentInvoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "itemId",
+            "columnName": "itemId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customField",
+            "columnName": "customField",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "quantity",
+            "columnName": "quantity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taxRate",
+            "columnName": "taxRate",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taxType",
+            "columnName": "taxType",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_items_parentInvoiceId",
+            "unique": false,
+            "columnNames": [
+              "parentInvoiceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_items_parentInvoiceId` ON `${TABLE_NAME}` (`parentInvoiceId`)"
+          },
+          {
+            "name": "index_invoice_items_itemId",
+            "unique": false,
+            "columnNames": [
+              "itemId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_items_itemId` ON `${TABLE_NAME}` (`itemId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "items",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "itemId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_payments",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceId` INTEGER NOT NULL, `amountCents` TEXT NOT NULL, `paidAt` TEXT NOT NULL, `paymentMethod` TEXT NOT NULL, FOREIGN KEY(`parentInvoiceId`) REFERENCES `invoices`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceId",
+            "columnName": "parentInvoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amountCents",
+            "columnName": "amountCents",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "paidAt",
+            "columnName": "paidAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "paymentMethod",
+            "columnName": "paymentMethod",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_payments_parentInvoiceId",
+            "unique": false,
+            "columnNames": [
+              "parentInvoiceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_payments_parentInvoiceId` ON `${TABLE_NAME}` (`parentInvoiceId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_sequences",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `businessId` INTEGER NOT NULL, `clientId` INTEGER NOT NULL, `nextSequence` INTEGER NOT NULL, `invoiceType` TEXT NOT NULL, `createdAt` TEXT, `updatedAt` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessId",
+            "columnName": "businessId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "clientId",
+            "columnName": "clientId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nextSequence",
+            "columnName": "nextSequence",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invoiceType",
+            "columnName": "invoiceType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_sequences_businessId_clientId_invoiceType",
+            "unique": true,
+            "columnNames": [
+              "businessId",
+              "clientId",
+              "invoiceType"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_invoice_sequences_businessId_clientId_invoiceType` ON `${TABLE_NAME}` (`businessId`, `clientId`, `invoiceType`)"
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_business_snapshots",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceId` INTEGER NOT NULL, `businessName` TEXT NOT NULL, `businessShortName` TEXT NOT NULL, `businessAddress` TEXT, `businessRole` TEXT, `businessEmail` TEXT, `businessPhone` TEXT, `businessAdditional` TEXT, `businessPaymentInformation` TEXT, `businessLogo` BLOB, `businessFileSize` INTEGER, `businessFileType` TEXT, `businessFileName` TEXT, `businessVatCode` TEXT, `businessCode` TEXT, `businessPeppolEndpointId` TEXT, `businessCountryCode` TEXT, `businessPeppolEndpointSchemeId` TEXT, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`parentInvoiceId`) REFERENCES `invoices`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceId",
+            "columnName": "parentInvoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessName",
+            "columnName": "businessName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessShortName",
+            "columnName": "businessShortName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessAddress",
+            "columnName": "businessAddress",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessRole",
+            "columnName": "businessRole",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessEmail",
+            "columnName": "businessEmail",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessPhone",
+            "columnName": "businessPhone",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessAdditional",
+            "columnName": "businessAdditional",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessPaymentInformation",
+            "columnName": "businessPaymentInformation",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessLogo",
+            "columnName": "businessLogo",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "businessFileSize",
+            "columnName": "businessFileSize",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "businessFileType",
+            "columnName": "businessFileType",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessFileName",
+            "columnName": "businessFileName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessVatCode",
+            "columnName": "businessVatCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessCode",
+            "columnName": "businessCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessPeppolEndpointId",
+            "columnName": "businessPeppolEndpointId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessCountryCode",
+            "columnName": "businessCountryCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "businessPeppolEndpointSchemeId",
+            "columnName": "businessPeppolEndpointSchemeId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_business_snapshots_parentInvoiceId",
+            "unique": false,
+            "columnNames": [
+              "parentInvoiceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_business_snapshots_parentInvoiceId` ON `${TABLE_NAME}` (`parentInvoiceId`)"
+          },
+          {
+            "name": "index_invoice_business_snapshots_businessName",
+            "unique": false,
+            "columnNames": [
+              "businessName"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_business_snapshots_businessName` ON `${TABLE_NAME}` (`businessName`)"
+          },
+          {
+            "name": "index_invoice_business_snapshots_businessShortName",
+            "unique": false,
+            "columnNames": [
+              "businessShortName"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_business_snapshots_businessShortName` ON `${TABLE_NAME}` (`businessShortName`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_client_snapshots",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceId` INTEGER NOT NULL, `clientName` TEXT NOT NULL, `clientAddress` TEXT, `clientEmail` TEXT, `clientPhone` TEXT, `clientCode` TEXT, `clientAdditional` TEXT, `clientVatCode` TEXT, `clientPeppolEndpointId` TEXT, `clientCountryCode` TEXT, `clientPeppolEndpointSchemeId` TEXT, `clientBuyerReference` TEXT, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`parentInvoiceId`) REFERENCES `invoices`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceId",
+            "columnName": "parentInvoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "clientName",
+            "columnName": "clientName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "clientAddress",
+            "columnName": "clientAddress",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "clientEmail",
+            "columnName": "clientEmail",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "clientPhone",
+            "columnName": "clientPhone",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "clientCode",
+            "columnName": "clientCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "clientAdditional",
+            "columnName": "clientAdditional",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "clientVatCode",
+            "columnName": "clientVatCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "clientPeppolEndpointId",
+            "columnName": "clientPeppolEndpointId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "clientCountryCode",
+            "columnName": "clientCountryCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "clientPeppolEndpointSchemeId",
+            "columnName": "clientPeppolEndpointSchemeId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "clientBuyerReference",
+            "columnName": "clientBuyerReference",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_client_snapshots_parentInvoiceId",
+            "unique": false,
+            "columnNames": [
+              "parentInvoiceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_client_snapshots_parentInvoiceId` ON `${TABLE_NAME}` (`parentInvoiceId`)"
+          },
+          {
+            "name": "index_invoice_client_snapshots_clientName",
+            "unique": false,
+            "columnNames": [
+              "clientName"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_client_snapshots_clientName` ON `${TABLE_NAME}` (`clientName`)"
+          },
+          {
+            "name": "index_invoice_client_snapshots_clientCode",
+            "unique": false,
+            "columnNames": [
+              "clientCode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_client_snapshots_clientCode` ON `${TABLE_NAME}` (`clientCode`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_currency_snapshots",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceId` INTEGER NOT NULL, `currencyCode` TEXT NOT NULL, `currencySymbol` TEXT NOT NULL, `currencySubunit` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`parentInvoiceId`) REFERENCES `invoices`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceId",
+            "columnName": "parentInvoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencyCode",
+            "columnName": "currencyCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencySymbol",
+            "columnName": "currencySymbol",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencySubunit",
+            "columnName": "currencySubunit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_currency_snapshots_parentInvoiceId",
+            "unique": false,
+            "columnNames": [
+              "parentInvoiceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_currency_snapshots_parentInvoiceId` ON `${TABLE_NAME}` (`parentInvoiceId`)"
+          },
+          {
+            "name": "index_invoice_currency_snapshots_currencyCode",
+            "unique": false,
+            "columnNames": [
+              "currencyCode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_currency_snapshots_currencyCode` ON `${TABLE_NAME}` (`currencyCode`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_bank_snapshots",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceId` INTEGER NOT NULL, `name` TEXT NOT NULL, `bankName` TEXT NOT NULL, `accountNumber` TEXT NOT NULL, `swiftCode` TEXT, `address` TEXT, `branchCode` TEXT, `type` TEXT, `routingNumber` TEXT, `upiCode` TEXT, `qrCode` BLOB, `accountHolder` TEXT, `sortOrder` TEXT, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`parentInvoiceId`) REFERENCES `invoices`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceId",
+            "columnName": "parentInvoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bankName",
+            "columnName": "bankName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "accountNumber",
+            "columnName": "accountNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "swiftCode",
+            "columnName": "swiftCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "branchCode",
+            "columnName": "branchCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "routingNumber",
+            "columnName": "routingNumber",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "upiCode",
+            "columnName": "upiCode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "qrCode",
+            "columnName": "qrCode",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "accountHolder",
+            "columnName": "accountHolder",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sortOrder",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_bank_snapshots_parentInvoiceId",
+            "unique": false,
+            "columnNames": [
+              "parentInvoiceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_bank_snapshots_parentInvoiceId` ON `${TABLE_NAME}` (`parentInvoiceId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_customizations",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceId` INTEGER NOT NULL, `color` TEXT NOT NULL, `logoSize` TEXT NOT NULL, `fontSize` TEXT NOT NULL, `tableHeaderStyle` TEXT NOT NULL, `tableRowStyle` TEXT NOT NULL, `pageFormat` TEXT NOT NULL, `labelUpperCase` INTEGER NOT NULL, `showQuantity` INTEGER NOT NULL, `showUnit` INTEGER NOT NULL, `showRowNo` INTEGER NOT NULL, `fieldSortOrders` TEXT NOT NULL, `fontFamily` TEXT NOT NULL, `pdfTexts` TEXT, `watermarkFileData` BLOB, `paidWatermarkFileData` BLOB, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`parentInvoiceId`) REFERENCES `invoices`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceId",
+            "columnName": "parentInvoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "color",
+            "columnName": "color",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "logoSize",
+            "columnName": "logoSize",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fontSize",
+            "columnName": "fontSize",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tableHeaderStyle",
+            "columnName": "tableHeaderStyle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tableRowStyle",
+            "columnName": "tableRowStyle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pageFormat",
+            "columnName": "pageFormat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "labelUpperCase",
+            "columnName": "labelUpperCase",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showQuantity",
+            "columnName": "showQuantity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showUnit",
+            "columnName": "showUnit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showRowNo",
+            "columnName": "showRowNo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fieldSortOrders",
+            "columnName": "fieldSortOrders",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fontFamily",
+            "columnName": "fontFamily",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pdfTexts",
+            "columnName": "pdfTexts",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "watermarkFileData",
+            "columnName": "watermarkFileData",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "paidWatermarkFileData",
+            "columnName": "paidWatermarkFileData",
+            "affinity": "BLOB"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_customizations_parentInvoiceId",
+            "unique": false,
+            "columnNames": [
+              "parentInvoiceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_customizations_parentInvoiceId` ON `${TABLE_NAME}` (`parentInvoiceId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_style_profile_snapshots",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceId` INTEGER NOT NULL, `styleProfileName` TEXT NOT NULL, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`parentInvoiceId`) REFERENCES `invoices`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceId",
+            "columnName": "parentInvoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "styleProfileName",
+            "columnName": "styleProfileName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_style_profile_snapshots_parentInvoiceId",
+            "unique": false,
+            "columnNames": [
+              "parentInvoiceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_style_profile_snapshots_parentInvoiceId` ON `${TABLE_NAME}` (`parentInvoiceId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_item_snapshots",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceItemId` INTEGER NOT NULL, `itemName` TEXT NOT NULL, `unitPriceCents` TEXT NOT NULL, `unitName` TEXT, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`parentInvoiceItemId`) REFERENCES `invoice_items`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceItemId",
+            "columnName": "parentInvoiceItemId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "itemName",
+            "columnName": "itemName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unitPriceCents",
+            "columnName": "unitPriceCents",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unitName",
+            "columnName": "unitName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_item_snapshots_parentInvoiceItemId",
+            "unique": false,
+            "columnNames": [
+              "parentInvoiceItemId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_item_snapshots_parentInvoiceItemId` ON `${TABLE_NAME}` (`parentInvoiceItemId`)"
+          },
+          {
+            "name": "index_invoice_item_snapshots_itemName",
+            "unique": false,
+            "columnNames": [
+              "itemName"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_invoice_item_snapshots_itemName` ON `${TABLE_NAME}` (`itemName`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoice_items",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceItemId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "invoice_layout_snapshots",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parentInvoiceId` INTEGER NOT NULL, `layoutSchema` TEXT NOT NULL, `createdAt` TEXT, `updatedAt` TEXT, FOREIGN KEY(`parentInvoiceId`) REFERENCES `invoices`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentInvoiceId",
+            "columnName": "parentInvoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "layoutSchema",
+            "columnName": "layoutSchema",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_invoice_layout_snapshots_parentInvoiceId",
+            "unique": true,
+            "columnNames": [
+              "parentInvoiceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_invoice_layout_snapshots_parentInvoiceId` ON `${TABLE_NAME}` (`parentInvoiceId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "invoices",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parentInvoiceId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '24b750a13c71a6e3263f605adfba87d6')"
+    ]
+  }
+}

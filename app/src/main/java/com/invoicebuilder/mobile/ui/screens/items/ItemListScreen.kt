@@ -22,6 +22,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.invoicebuilder.core.model.CurrencyFormat
+import com.invoicebuilder.core.model.Money
 import com.invoicebuilder.core.model.Item
 import com.invoicebuilder.mobile.ui.viewmodel.ItemViewModel
 import java.util.Locale
@@ -159,7 +160,7 @@ fun ModernItemCard(
     onArchive: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val amountValue = (item.amountCents.toDoubleOrNull() ?: 0.0) / 100.0
+    val amount = Money.ofCents(item.amountCents)
 
     Card(
         modifier = modifier
@@ -219,7 +220,7 @@ fun ModernItemCard(
 
             Column(horizontalAlignment = Alignment.End) {
                 Text(
-                    text = CurrencyFormat.formatAmount(amountValue),
+                    text = amount.format(),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary

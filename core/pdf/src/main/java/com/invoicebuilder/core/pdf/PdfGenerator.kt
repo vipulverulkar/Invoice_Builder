@@ -9,9 +9,10 @@ import com.invoicebuilder.core.calculator.InvoiceCalculator
 import com.invoicebuilder.core.calculator.ItemCalculationInput
 import com.invoicebuilder.core.model.Business
 import com.invoicebuilder.core.model.Client
+import com.invoicebuilder.core.model.CurrencyFormat
+import com.invoicebuilder.core.model.GstSupplyType
 import com.invoicebuilder.core.model.Invoice
 import java.io.ByteArrayOutputStream
-import java.util.Locale
 
 data class PdfInvoiceData(
     val invoice: Invoice,
@@ -19,7 +20,8 @@ data class PdfInvoiceData(
     val client: Client,
     val currencySymbol: String,
     val items: List<ItemCalculationInput>,
-    val itemNames: List<String>
+    val itemNames: List<String>,
+    val supplyType: GstSupplyType = GstSupplyType.IntraState
 )
 
 object PdfGenerator {
@@ -34,7 +36,7 @@ object PdfGenerator {
         val page = document.startPage(pageInfo)
         val canvas = page.canvas
 
-        val primaryColor = Color.parseColor("#006400")
+        val primaryColor = Color.parseColor("#4F46E5")
         val textColor = Color.parseColor("#0F172A")
         val textSecondaryColor = Color.parseColor("#64748B")
         val dividerColor = Color.parseColor("#E2E8F0")
@@ -90,8 +92,12 @@ object PdfGenerator {
             canvas.drawText(it, 40f, yPos, paint)
             yPos += 14f
         }
-        data.business.vatCode?.let {
-            canvas.drawText("VAT: $it", 40f, yPos, paint)
+        data.business.gstin?.let {
+            canvas.drawText("GSTIN: $it", 40f, yPos, paint)
+            yPos += 14f
+        }
+        data.business.stateCode?.let {
+            canvas.drawText("State Code: $it", 40f, yPos, paint)
         }
 
         // Client Info (Bill To)
@@ -116,12 +122,16 @@ object PdfGenerator {
             canvas.drawText(it, 300f, clientY, paint)
             clientY += 14f
         }
-        data.client.vatCode?.let {
-            canvas.drawText("VAT: $it", 300f, clientY, paint)
+        data.client.gstin?.let {
+            canvas.drawText("GSTIN: $it", 300f, clientY, paint)
+            clientY += 14f
+        }
+        data.invoice.placeOfSupply?.let {
+            canvas.drawText("Place of Supply: $it", 300f, clientY, paint)
         }
 
         // Table Header
-        val tableTop = 210f
+        val tableTop = 225f
         paint.color = Color.parseColor("#F1F5F9")
         canvas.drawRect(40f, tableTop, 555f, tableTop + 24f, paint)
 
@@ -129,7 +139,9 @@ object PdfGenerator {
         paint.textSize = 9f
         paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
         canvas.drawText("ITEM DESCRIPTION", 50f, tableTop + 16f, paint)
+        canvas.drawText("HSN", 260f, tableTop + 16f, paint)
         canvas.drawText("QTY", 320f, tableTop + 16f, paint)
+        canvas.drawText("GST %", 360f, tableTop + 16f, paint)
         canvas.drawText("UNIT PRICE", 400f, tableTop + 16f, paint)
         canvas.drawText("TOTAL", 490f, tableTop + 16f, paint)
 
@@ -140,62 +152,106 @@ object PdfGenerator {
         val calculated = InvoiceCalculator.calculateInvoiceTotals(
             items = data.items,
             discountType = data.invoice.discountType,
-            discountAmountCents = data.invoice.discountAmountCents.toDoubleOrNull() ?: 0.0,
+            discountAmount = com.invoicebuilder.core.model.Money.ofCents(data.invoice.discountAmountCents),
             discountPercent = data.invoice.discountPercent,
             surchargeType = data.invoice.surchargeType,
-            surchargeAmountCents = data.invoice.surchargeAmountCents.toDoubleOrNull() ?: 0.0,
+            surchargeAmount = com.invoicebuilder.core.model.Money.ofCents(data.invoice.surchargeAmountCents),
             surchargePercent = data.invoice.surchargePercent,
-            shippingFeeCents = data.invoice.shippingFeeCents.toDoubleOrNull() ?: 0.0,
+            shippingFee = com.invoicebuilder.core.model.Money.ofCents(data.invoice.shippingFeeCents),
             taxRate = data.invoice.taxRate,
-            taxType = data.invoice.taxType
+            taxType = data.invoice.taxType,
+            supplyType = data.supplyType
         )
 
         data.items.forEachIndexed { index, item ->
-            val itemName = data.itemNames.getOrElse(index) { "Item ${index + 1}" }
-            val lineTotal = (item.unitPriceCents * item.quantity) / 100.0
+            val itemName = data.itemNames.getOrElse(index) { item.itemName.ifEmpty { "Item ${index + 1}" } }
+            val lineTotal = InvoiceCalculator.getInvoiceItemAmount(item.unitPrice, item.quantity)
+            val line = calculated.lines.getOrNull(index)
 
             paint.color = textColor
-            canvas.drawText(itemName, 50f, currentY, paint)
-            canvas.drawText(String.format(Locale.US, "%.1f", item.quantity), 320f, currentY, paint)
-            canvas.drawText(String.format(Locale.US, "%s%.2f", data.currencySymbol, item.unitPriceCents / 100.0), 400f, currentY, paint)
-            canvas.drawText(String.format(Locale.US, "%s%.2f", data.currencySymbol, lineTotal), 490f, currentY, paint)
+            canvas.drawText(itemName.take(40), 50f, currentY, paint)
+            canvas.drawText(item.hsnCode.orEmpty(), 260f, currentY, paint)
+            canvas.drawText(String.format(java.util.Locale.US, "%.1f", item.quantity), 320f, currentY, paint)
+            canvas.drawText(
+                String.format(java.util.Locale.US, "%.0f%%", line?.taxRate ?: 0.0),
+                360f,
+                currentY,
+                paint
+            )
+            canvas.drawText(item.unitPrice.format(data.currencySymbol), 400f, currentY, paint)
+            canvas.drawText(lineTotal.format(data.currencySymbol), 490f, currentY, paint)
 
             paint.color = dividerColor
             canvas.drawLine(40f, currentY + 10f, 555f, currentY + 10f, paint)
             currentY += 25f
         }
 
-        // Totals Section (Bottom Right)
-        val totalsX = 350f
-        var totalsY = currentY + 20f
+        // GST breakup table
+        currentY += 8f
+        paint.color = textColor
+        paint.textSize = 9f
+        paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+        canvas.drawText("GST BREAKUP", 40f, currentY, paint)
+        currentY += 14f
 
         paint.color = textSecondaryColor
-        canvas.drawText("Subtotal:", totalsX, totalsY, paint)
-        paint.color = textColor
-        canvas.drawText(String.format(Locale.US, "%s%.2f", data.currencySymbol, calculated.subtotalNet / 100.0), 480f, totalsY, paint)
+        paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
+        canvas.drawText("Rate", 50f, currentY, paint)
+        canvas.drawText("Taxable", 150f, currentY, paint)
+        canvas.drawText("CGST", 280f, currentY, paint)
+        canvas.drawText("SGST", 360f, currentY, paint)
+        canvas.drawText("IGST", 440f, currentY, paint)
+        currentY += 14f
 
-        if (calculated.discountTotal > 0) {
+        calculated.gstGroups.forEach { group ->
+            paint.color = textColor
+            canvas.drawText(String.format(java.util.Locale.US, "%.0f%%", group.rate), 50f, currentY, paint)
+            canvas.drawText(group.taxable.format(data.currencySymbol), 150f, currentY, paint)
+            canvas.drawText(group.cgst.format(data.currencySymbol), 280f, currentY, paint)
+            canvas.drawText(group.sgst.format(data.currencySymbol), 360f, currentY, paint)
+            canvas.drawText(group.igst.format(data.currencySymbol), 440f, currentY, paint)
+            currentY += 14f
+        }
+
+        // Totals Section (Bottom Right)
+        val totalsX = 350f
+        var totalsY = maxOf(currentY + 20f, 320f)
+
+        paint.color = textSecondaryColor
+        canvas.drawText("Taxable Value:", totalsX, totalsY, paint)
+        paint.color = textColor
+        canvas.drawText(calculated.subtotalNet.format(data.currencySymbol), 480f, totalsY, paint)
+
+        if (calculated.discountTotal.isPositive()) {
             totalsY += 18f
             paint.color = textSecondaryColor
             canvas.drawText("Discount:", totalsX, totalsY, paint)
             paint.color = Color.parseColor("#16A34A")
-            canvas.drawText(String.format(Locale.US, "-%s%.2f", data.currencySymbol, calculated.discountTotal / 100.0), 480f, totalsY, paint)
+            canvas.drawText("-" + calculated.discountTotal.format(data.currencySymbol), 480f, totalsY, paint)
         }
 
-        if (calculated.taxTotal > 0) {
+        if (calculated.taxTotal.isPositive()) {
             totalsY += 18f
             paint.color = textSecondaryColor
-            canvas.drawText("Tax (${data.invoice.taxRate}%):", totalsX, totalsY, paint)
+            canvas.drawText("GST:", totalsX, totalsY, paint)
             paint.color = textColor
-            canvas.drawText(String.format(Locale.US, "%s%.2f", data.currencySymbol, calculated.taxTotal / 100.0), 480f, totalsY, paint)
+            canvas.drawText(calculated.taxTotal.format(data.currencySymbol), 480f, totalsY, paint)
         }
 
-        if (calculated.shippingTotal > 0) {
+        if (calculated.shippingTotal.isPositive()) {
             totalsY += 18f
             paint.color = textSecondaryColor
             canvas.drawText("Shipping:", totalsX, totalsY, paint)
             paint.color = textColor
-            canvas.drawText(String.format(Locale.US, "%s%.2f", data.currencySymbol, calculated.shippingTotal / 100.0), 480f, totalsY, paint)
+            canvas.drawText(calculated.shippingTotal.format(data.currencySymbol), 480f, totalsY, paint)
+        }
+
+        if (calculated.roundOff.isPositive() || calculated.roundOff.paise < 0) {
+            totalsY += 18f
+            paint.color = textSecondaryColor
+            canvas.drawText("Round Off:", totalsX, totalsY, paint)
+            paint.color = textColor
+            canvas.drawText(calculated.roundOff.format(data.currencySymbol), 480f, totalsY, paint)
         }
 
         // Total Payable
@@ -207,24 +263,35 @@ object PdfGenerator {
         paint.textSize = 12f
         paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
         canvas.drawText("Total Payable:", totalsX, totalsY + 4f, paint)
-        canvas.drawText(String.format(Locale.US, "%s%.2f", data.currencySymbol, calculated.payableTotal / 100.0), 480f, totalsY + 4f, paint)
+        canvas.drawText(calculated.payableTotal.format(data.currencySymbol), 480f, totalsY + 4f, paint)
+
+        // Amount in words
+        paint.color = textSecondaryColor
+        paint.textSize = 9f
+        paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+        canvas.drawText("AMOUNT IN WORDS:", 40f, currentY + 26f, paint)
+        paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
+        canvas.drawText(calculated.amountInWords.take(70), 40f, currentY + 40f, paint)
 
         // Notes (Bottom Left)
         data.invoice.customerNotes?.let { notes ->
-            val notesY = currentY + 30f
+            val notesY = currentY + 62f
             paint.color = textSecondaryColor
             paint.textSize = 9f
             paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
             canvas.drawText("NOTES:", 40f, notesY, paint)
 
             paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
-            canvas.drawText(notes, 40f, notesY + 15f, paint)
+            canvas.drawText(notes.take(70), 40f, notesY + 15f, paint)
         }
 
         // Footer
         paint.color = textSecondaryColor
         paint.textSize = 8f
         canvas.drawText("Thank you for your business!", 40f, 800f, paint)
+        data.business.gstin?.let {
+            canvas.drawText("GSTIN: $it", 400f, 800f, paint)
+        }
 
         document.finishPage(page)
 
