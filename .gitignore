@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+**/build/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Kotlin
+.kotlin/
+
+# Local configuration (contains SDK paths / machine-specific data)
+local.properties
+
+# Signing / secrets
+*.jks
+*.keystore
+*.p12
+keystore.properties
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp

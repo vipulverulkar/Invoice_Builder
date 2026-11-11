@@ -1,0 +1,360 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="192dp"
+    android:height="192dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- 1. Deep Ambient Ground Glow / Drop Shadow -->
+    <path
+        android:pathData="M110,410 C180,455 332,455 402,410 C435,388 385,360 256,360 C127,360 77,388 110,410 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="256"
+                android:startY="360"
+                android:endX="256"
+                android:endY="450"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#40090D16" />
+                <item android:offset="1.0" android:color="#00090D16" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 2. BASE SLAB - Extrusion Left Wall (Dark Royal Navy) -->
+    <path
+        android:pathData="M96,252 L256,344 L256,378 L96,286 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="96"
+                android:startY="252"
+                android:endX="256"
+                android:endY="378"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#1E1B4B" />
+                <item android:offset="1.0" android:color="#0F172A" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 2. BASE SLAB - Extrusion Right Wall (Deep Midnight) -->
+    <path
+        android:pathData="M256,344 L416,252 L416,286 L256,378 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="256"
+                android:startY="344"
+                android:endX="416"
+                android:endY="378"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#0F172A" />
+                <item android:offset="1.0" android:color="#020617" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 2. BASE SLAB - Top Face (Rich Indigo / Slate Metallic Slab) -->
+    <path
+        android:pathData="M256,160 L416,252 L256,344 L96,252 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="96"
+                android:startY="160"
+                android:endX="416"
+                android:endY="344"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#3730A3" />
+                <item android:offset="0.5" android:color="#312E81" />
+                <item android:offset="1.0" android:color="#1E1B4B" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Base Slab - Top Chamfer Light Rim -->
+    <path
+        android:pathData="M256,160 L416,252 L256,344 L96,252 Z"
+        android:strokeWidth="2.5"
+        android:strokeAlpha="0.6">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="96"
+                android:startY="160"
+                android:endX="416"
+                android:endY="344"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#818CF8" />
+                <item android:offset="0.5" android:color="#4F46E5" />
+                <item android:offset="1.0" android:color="#312E81" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 3. INVOICE SHEET SHADOW (Casts soft 3D shadow on the slab) -->
+    <path
+        android:pathData="M136,242 L268,166 L384,232 L252,310 Z"
+        android:fillColor="#4D000000" />
+
+    <!-- 4. FLOATING 3D INVOICE SHEET - Extruded Thickness Left Edge -->
+    <path
+        android:pathData="M124,204 L256,280 L256,296 L124,220 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="124"
+                android:startY="204"
+                android:endX="256"
+                android:endY="296"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#94A3B8" />
+                <item android:offset="1.0" android:color="#64748B" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 4. FLOATING 3D INVOICE SHEET - Extruded Thickness Right Edge -->
+    <path
+        android:pathData="M256,280 L388,204 L388,220 L256,296 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="256"
+                android:startY="280"
+                android:endX="388"
+                android:endY="296"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#64748B" />
+                <item android:offset="1.0" android:color="#475569" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 4. FLOATING 3D INVOICE SHEET - Main Top Paper Face (Pure Crisp Gradient) -->
+    <!-- Note: Top right corner is notched for the 3D folded corner -->
+    <path
+        android:pathData="M256,104 L344,155 L388,180 L256,280 L124,204 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="124"
+                android:startY="104"
+                android:endX="388"
+                android:endY="280"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FFFFFF" />
+                <item android:offset="0.6" android:color="#F8FAFC" />
+                <item android:offset="1.0" android:color="#E2E8F0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Paper Edge Specular Highlight -->
+    <path
+        android:pathData="M124,204 L256,104 L344,155"
+        android:strokeWidth="1.8"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.8" />
+
+    <!-- 5. 3D FOLDED CORNER (Dog Ear) -->
+    <!-- Fold Shadow on Paper -->
+    <path
+        android:pathData="M344,155 L388,180 L346,180 Z"
+        android:fillColor="#331E293B" />
+
+    <!-- Folded Flap (Vibrant High-Tech Gradient) -->
+    <path
+        android:pathData="M344,155 L388,180 L358,137 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="344"
+                android:startY="137"
+                android:endX="388"
+                android:endY="180"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#38BDF8" />
+                <item android:offset="1.0" android:color="#1D4ED8" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Folded Flap Highlight Edge -->
+    <path
+        android:pathData="M344,155 L358,137 L388,180"
+        android:strokeWidth="1.5"
+        android:strokeColor="#E0F2FE" />
+
+    <!-- 6. INVOICE HEADER ACCENT BANNER (Glossy 3D Blue/Purple) -->
+    <path
+        android:pathData="M144,192 L256,128 L320,165 L208,229 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="144"
+                android:startY="128"
+                android:endX="320"
+                android:endY="229"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#2563EB" />
+                <item android:offset="0.6" android:color="#4F46E5" />
+                <item android:offset="1.0" android:color="#7C3AED" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Banner Highlight Stroke -->
+    <path
+        android:pathData="M144,192 L256,128 L320,165"
+        android:strokeWidth="1.2"
+        android:strokeColor="#93C5FD"
+        android:strokeAlpha="0.7" />
+
+    <!-- 7. INVOICE EMBOSSED DATA LINES & ELEMENTS -->
+    <!-- Line Item 1 -->
+    <path
+        android:pathData="M166,216 L236,176 L286,204 L216,244 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="166"
+                android:startY="176"
+                android:endX="286"
+                android:endY="244"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#E2E8F0" />
+                <item android:offset="1.0" android:color="#CBD5E1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Line Item 1 Status Pill -->
+    <path
+        android:pathData="M294,199 L320,184 L328,188 L302,203 Z"
+        android:fillColor="#38BDF8" />
+
+    <!-- Line Item 2 -->
+    <path
+        android:pathData="M182,233 L242,199 L282,222 L222,256 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="182"
+                android:startY="199"
+                android:endX="282"
+                android:endY="256"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#E2E8F0" />
+                <item android:offset="1.0" android:color="#CBD5E1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Line Item 2 Status Pill -->
+    <path
+        android:pathData="M290,217 L312,204 L320,208 L298,221 Z"
+        android:fillColor="#818CF8" />
+
+    <!-- Divider Bar -->
+    <path
+        android:pathData="M198,250 L274,206"
+        android:strokeWidth="2.0"
+        android:strokeColor="#94A3B8"
+        android:strokeAlpha="0.5" />
+
+    <!-- 8. HERO 3D FLOATING TOKEN / SEAL (Badge in Lower Right) -->
+    <!-- Token Ambient Shadow -->
+    <path
+        android:pathData="M272,330 C305,372 385,355 408,318 C424,292 376,270 330,285 C295,296 260,314 272,330 Z"
+        android:fillColor="#66050C1B" />
+
+    <!-- Token 3D Extrusion Wall (Metallic Emerald & Cyan Bevel) -->
+    <path
+        android:pathData="M312,260 C352,238 396,252 410,292 L410,306 C396,266 352,252 312,274 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="312"
+                android:startY="238"
+                android:endX="410"
+                android:endY="306"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#0284C7" />
+                <item android:offset="1.0" android:color="#0F766E" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:pathData="M276,280 C290,320 334,334 374,312 L374,326 C334,348 290,334 276,294 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="276"
+                android:startY="280"
+                android:endX="374"
+                android:endY="348"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#0D9488" />
+                <item android:offset="1.0" android:color="#047857" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Token Front Face (Luminous Radial/Linear Emerald to Cyan Gradient) -->
+    <path
+        android:pathData="M344,236 C382,236 414,260 414,290 C414,320 382,344 344,344 C306,344 274,320 274,290 C274,260 306,236 344,236 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="274"
+                android:startY="236"
+                android:endX="414"
+                android:endY="344"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#06B6D4" />
+                <item android:offset="0.45" android:color="#10B981" />
+                <item android:offset="1.0" android:color="#059669" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Token Inner Bevel Ring (Glass reflection) -->
+    <path
+        android:pathData="M344,242 C377,242 404,264 404,290 C404,316 377,338 344,338 C311,338 284,316 284,290 C284,264 311,242 344,242 Z"
+        android:strokeWidth="2.5"
+        android:strokeAlpha="0.6">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="284"
+                android:startY="242"
+                android:endX="404"
+                android:endY="338"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FFFFFF" />
+                <item android:offset="0.7" android:color="#A7F3D0" />
+                <item android:offset="1.0" android:color="#059669" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Token 3D Checkmark Crest (Pure White with 3D drop shadow) -->
+    <!-- Checkmark shadow -->
+    <path
+        android:pathData="M315,293 L336,312 L379,271"
+        android:strokeWidth="8"
+        android:strokeColor="#33047857"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- Checkmark main -->
+    <path
+        android:pathData="M313,291 L334,310 L377,269"
+        android:strokeWidth="8"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- 9. SPECULAR LIGHT GLINTS / DIAMOND SPARKLES -->
+    <!-- Corner Glint on Paper Fold -->
+    <path
+        android:pathData="M358,127 L360,137 L370,139 L360,141 L358,151 L356,141 L346,139 L356,137 Z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M358,139 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0"
+        android:fillColor="#E0F2FE" />
+
+    <!-- Glint on Badge Rim -->
+    <path
+        android:pathData="M402,256 L404,262 L410,263 L404,264 L402,270 L400,264 L394,263 L400,262 Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.9" />
+
+    <!-- Tiny Glint on Top Slab -->
+    <path
+        android:pathData="M256,155 L257.5,159.5 L262,161 L257.5,162.5 L256,167 L254.5,162.5 L250,161 L254.5,159.5 Z"
+        android:fillColor="#E0E7FF"
+        android:fillAlpha="0.8" />
+</vector>
