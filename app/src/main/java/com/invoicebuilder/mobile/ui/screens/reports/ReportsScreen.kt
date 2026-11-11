@@ -18,10 +18,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.invoicebuilder.core.model.CurrencyFormat
 import com.invoicebuilder.core.model.InvoiceStatus
 import com.invoicebuilder.mobile.ui.theme.getInvoiceStatusColors
 import com.invoicebuilder.mobile.ui.viewmodel.ReportsViewModel
-import java.util.Locale
 
 @Composable
 fun ReportsScreen(
@@ -66,7 +66,7 @@ fun ReportsScreen(
                 ModernMetricCard(
                     modifier = Modifier.weight(1f),
                     title = "Collected",
-                    amount = String.format(Locale.US, "$%.2f", uiState.totalRevenueCents / 100.0),
+                    amount = CurrencyFormat.formatAmount(uiState.totalRevenueCents / 100.0),
                     icon = Icons.Outlined.CheckCircle,
                     accentColor = paidColors.text,
                     badgeBgColor = paidColors.background
@@ -75,7 +75,7 @@ fun ReportsScreen(
                 ModernMetricCard(
                     modifier = Modifier.weight(1f),
                     title = "Receivables",
-                    amount = String.format(Locale.US, "$%.2f", uiState.totalReceivablesCents / 100.0),
+                    amount = CurrencyFormat.formatAmount(uiState.totalReceivablesCents / 100.0),
                     icon = Icons.Outlined.ErrorOutline,
                     accentColor = unpaidColors.text,
                     badgeBgColor = unpaidColors.background
@@ -154,7 +154,7 @@ fun ReportsScreen(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             Text(
-                                text = String.format(Locale.US, "$%.2f", averageInvoiceCents / 100.0),
+                                text = CurrencyFormat.formatAmount(averageInvoiceCents / 100.0),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -337,7 +337,7 @@ fun ReportsScreen(
                                     }
                                     Spacer(modifier = Modifier.width(12.dp))
                                     Text(
-                                        text = String.format(Locale.US, "$%.0f", trend.revenueCents / 100.0),
+                                        text = CurrencyFormat.formatAmount(trend.revenueCents / 100.0, decimals = 0),
                                         style = MaterialTheme.typography.labelMedium,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onSurface,
@@ -446,7 +446,7 @@ fun HeroFinancialCard(
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Text(
-                    text = String.format(Locale.US, "$%.2f", totalRevenueCents / 100.0),
+                    text = CurrencyFormat.formatAmount(totalRevenueCents / 100.0),
                     style = MaterialTheme.typography.displayMedium,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -568,7 +568,7 @@ fun ReportsScreenPreview() {
                 ModernMetricCard(
                     modifier = Modifier.weight(1f),
                     title = "Collected",
-                    amount = "$18,450.00",
+                    amount = "₹18,450.00",
                     icon = Icons.Outlined.CheckCircle,
                     accentColor = paid.text,
                     badgeBgColor = paid.background
@@ -577,7 +577,7 @@ fun ReportsScreenPreview() {
                 ModernMetricCard(
                     modifier = Modifier.weight(1f),
                     title = "Receivables",
-                    amount = "$3,250.00",
+                    amount = "₹3,250.00",
                     icon = Icons.Outlined.ErrorOutline,
                     accentColor = unpaid.text,
                     badgeBgColor = unpaid.background

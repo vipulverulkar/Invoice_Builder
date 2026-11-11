@@ -40,6 +40,7 @@ enum class InvoiceItemTaxType {
 @Serializable
 enum class AmountFormat(val localeTag: String) {
     @SerialName("en-US") EnUS("en-US"),
+    @SerialName("en-IN") EnIN("en-IN"),
     @SerialName("de-DE") DeDE("de-DE"),
     @SerialName("fr-FR") FrFR("fr-FR"),
     @SerialName("cs-CZ") CsCZ("cs-CZ"),

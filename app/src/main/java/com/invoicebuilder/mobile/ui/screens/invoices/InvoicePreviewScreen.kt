@@ -24,6 +24,7 @@ import com.invoicebuilder.core.calculator.ItemCalculationInput
 import com.invoicebuilder.core.einvoice.UblXmlGenerator
 import com.invoicebuilder.core.model.Business
 import com.invoicebuilder.core.model.Client
+import com.invoicebuilder.core.model.CurrencyFormat
 import com.invoicebuilder.core.model.Invoice
 import com.invoicebuilder.core.pdf.FacturXAttacher
 import com.invoicebuilder.core.pdf.PdfGenerator
@@ -39,7 +40,7 @@ fun InvoicePreviewScreen(
     invoice: Invoice,
     business: Business,
     client: Client,
-    currencySymbol: String = "$",
+    currencySymbol: String = CurrencyFormat.SYMBOL,
     items: List<ItemCalculationInput>,
     itemNames: List<String>,
     onNavigateBack: () -> Unit
@@ -68,7 +69,7 @@ fun InvoicePreviewScreen(
                 invoice = invoice,
                 business = business,
                 client = client,
-                currencyCode = "USD",
+                currencyCode = CurrencyFormat.CODE,
                 items = items
             )
             xmlContent = xml

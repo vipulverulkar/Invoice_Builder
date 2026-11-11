@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.invoicebuilder.core.model.CurrencyFormat
 import com.invoicebuilder.core.model.Item
 import com.invoicebuilder.mobile.ui.viewmodel.ItemViewModel
 import java.util.Locale
@@ -218,7 +219,7 @@ fun ModernItemCard(
 
             Column(horizontalAlignment = Alignment.End) {
                 Text(
-                    text = String.format(Locale.US, "$%.2f", amountValue),
+                    text = CurrencyFormat.formatAmount(amountValue),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
@@ -380,7 +381,7 @@ fun ModernItemFormDialog(
                     value = priceInput,
                     onValueChange = { priceInput = it },
                     label = { Text("Price (e.g. 50.00)") },
-                    prefix = { Text("$ ") },
+                    prefix = { Text("${CurrencyFormat.SYMBOL} ") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     singleLine = true,
                     shape = RoundedCornerShape(12.dp),

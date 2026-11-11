@@ -109,7 +109,7 @@ data class Bank(
 data class Settings(
     val id: Long = 1,
     val language: String = "en",
-    val amountFormat: String = "en-US",
+    val amountFormat: String = "en-IN",
     val dateFormat: String = "MM/dd/yyyy",
     val isDarkMode: Boolean = true,
     val invoicePrefix: String? = null,

@@ -17,10 +17,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.invoicebuilder.core.model.CurrencyFormat
 import com.invoicebuilder.core.model.DiscountType
 import com.invoicebuilder.core.model.TaxType
 import com.invoicebuilder.mobile.ui.viewmodel.InvoiceFormViewModel
-import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -135,7 +135,7 @@ fun InvoiceFormScreen(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             Text(
-                                text = String.format(Locale.US, "$%.2f", calc.payableTotal / 100.0),
+                                text = CurrencyFormat.formatAmount(calc.payableTotal / 100.0),
                                 style = MaterialTheme.typography.headlineMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.primary
@@ -328,7 +328,7 @@ fun LineItemsStep(viewModel: InvoiceFormViewModel) {
                                 )
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
-                                    "Qty: ${item.quantity} × $${String.format(Locale.US, "%.2f", item.unitPriceCents / 100.0)}",
+                                    "Qty: ${item.quantity} × ${CurrencyFormat.SYMBOL}${CurrencyFormat.formatPlain(item.unitPriceCents / 100.0)}",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -371,7 +371,7 @@ fun LineItemsStep(viewModel: InvoiceFormViewModel) {
                                     },
                                     supportingContent = {
                                         Text(
-                                            "$${String.format(Locale.US, "%.2f", (catalogItem.amountCents.toDoubleOrNull() ?: 0.0) / 100.0)}",
+                                            "${CurrencyFormat.SYMBOL}${CurrencyFormat.formatPlain((catalogItem.amountCents.toDoubleOrNull() ?: 0.0) / 100.0)}",
                                             color = MaterialTheme.colorScheme.primary,
                                             fontWeight = FontWeight.Bold
                                         )

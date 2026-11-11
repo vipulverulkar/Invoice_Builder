@@ -1,5 +1,6 @@
 package com.invoicebuilder.core.common
 
+import com.invoicebuilder.core.model.CurrencyFormat
 import com.invoicebuilder.core.model.Business
 import com.invoicebuilder.core.model.Invoice
 import java.io.ByteArrayOutputStream
@@ -26,7 +27,7 @@ object EscPosBuilder {
         invoice: Invoice,
         items: List<ReceiptItem>,
         totalPayableCents: Double,
-        currencySymbol: String = "$"
+        currencySymbol: String = CurrencyFormat.SYMBOL
     ): ByteArray {
         val out = ByteArrayOutputStream()
 
